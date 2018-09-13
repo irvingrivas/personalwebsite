@@ -1,11 +1,10 @@
 $(document).ready(function(){
-    $("#title").on("click", function () {
-        var target = $("#list-item-2");
-        $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 1000, function() {
-            var $target = $(target);
-            $target.focus();
-        });
+    $(".nav-link").click(function(event){ 
+        divId = $(this).attr("href"); 
+        event.preventDefault(); 
+        $("html, body").animate({
+            scrollTop: $(divId).offset().top
+        }, 1000, "easeInOutQuad");
+        console.log(this);
     });
-});
+ });

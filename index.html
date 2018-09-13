@@ -7,67 +7,94 @@
     <title>Irving Rivas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="assets/javascript/webjs.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 left-column text-center">
-                <br><br><br><br><br><br><br><br>
-                <div data-spy="scroll" data-target="#list-example" data-offset="20" class="scrollspy-example">
-                     <nav class="col-sm-3" id="myScrollspy">
-                        <ul class="nav navbar nav-pills nav-stacked">
-                            <li id="about"><a href="#about-page">About</a></li><br>
-                            <li id="experience"><a href="#experience-page">Experience</a></li><br>
-                            <li id="education"><a href="#education-page">Education</a></li><br>
-                            <li id="skills"><a href="#skills-page">Skills</a></li><br>
-                            <li id="hobbies"><a href="#hobbies-page">Hobbies</a></li><br>
-                            <li id="contact"><a href="#contact-page">Contact</a></li><br>
-                        </ul>
-                    </nav>
+        <div class="text-center left-column row">
+            <nav id="myScrollspy" class="navbar navbar-light">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><div><a class="active navbar-brand nav-link" style="background-color: #4aaaa5;" href="#about-page">About</a></div></li><br><br>
+                    <li class="nav-item"><div><a class="navbar-brand nav-link" style="background-color: #4aaaa5;" href="#experience-page">Experience</a></div></li><br><br>
+                    <li class="nav-item"><div><a class="navbar-brand nav-link" style="background-color: #4aaaa5;" href="#education-page">Education</a></div></li><br><br>
+                    <li class="nav-item"><div><a class="navbar-brand nav-link" style="background-color: #4aaaa5;" href="#skills-page">Skills</a></div></li><br><br>
+                    <li class="nav-item"><div><a class="navbar-brand nav-link" style="background-color: #4aaaa5;" href="#hobbies-page">Hobbies</a></div></li><br><br>
+                    <li class="nav-item"><div><a class="navbar-brand nav-link" style="background-color: #4aaaa5;" href="#contact-page">Contact</a></div></li><br><br>
+                </ul>
+            </nav>
+        </div>
+        <div id="sub-body">
+            <div id="about-page" class="page"><br><h1>About Irving</h1><hr />
+                <div class="row">
+                        <div class="col-md-3">
+                            <img class="img img-thumbnail" src="http://placehold.it/200x200">
+                        </div>
+                        <div class="col-md-9">
+                            <h2>Generic Biography</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae cumque corporis quis sed, quod pariatur! Officia aut tempore repellendus, culpa inventore magnam accusamus nemo fugiat debitis voluptates ratione omnis, nobis.</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas delectus dignissimos corporis, voluptatem totam adipisci porro nisi exercitationem hic! Ratione a sapiente, beatae perferendis voluptas blanditiis esse maiores excepturi nemo.</p>
+                        </div>
                 </div>
             </div>
-        </div>
-        <div id="about-page">
-            <br><h1>About Irving</h1>
-            <hr />
-        </div>
-        <div id="experience-page">
-            <br><h1>Experience</h1>
-            <hr />
-        </div>
-        <div id="skills-page">
-            <br><h1>Skills</h1>
-            <hr />
-        </div>
-        <div id="hobbies-page">
-            <br><h1>Hobbies</h1>
-            <hr />
-        </div>
-        <div id="contact-page">
-            <h1>Contact</h1>
-            <hr />
-            <form>
-                <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
-                </div>
-                <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">I am not a robot</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <br>
+            <div id="experience-page" class="page"><br><h1>Experience</h1><hr />
+                <h2 class="job-title">Systems Engineer - Raytheon Missile Systems</h2>
+                <h4 class="location"><i>Tucson, AZ &nbsp;</i></h4>
+                <h4 class="duration"><i>June 2016 - Present</i></h4>
+                <h2 class="job-title">Software Engineer Intern - Lockheed Martin</h2>
+                <h4 class="location"><i>Moorestown, NJ &nbsp;</i></h4>
+                <h4 class="duration"><i>May 2015 - August 2015</i></h4>
+            </div>
+            <div id="education-page" class="page"><br><h1>Education</h1><hr />
+                <h2 class="job-title">B.S. in Electrical and Computer Engineering</h2>
+                <h2 class="job-title">Rutgers University</h2>
+                <h4 class="location"><i>New Brunswick, NJ &nbsp;</i></h4>
+                <h4 class="duration"><i>May 2016, Magna Cum Laude, 3.61</i></h4>
+                <p><i>Professional Societies: Society of Hispanic Professional Engineers, Engineering Governing Council, Bachata Dance Club, Salsa Club, Tau Beta Pi, Eta Kappa Nu</i></p>
+            </div>
+            <div id="skills-page" class="page"><br><h1>Skills</h1><hr />
+                <h2>People Skills</h2>
+                <h4><i>Strong communicator, quick learner of technical information, detail oriented, hard worker</i></h4>
+                <h2>Spoken Languages</h2> 
+                <h4>English, Spanish</h4>
+                <h2>High Level Languages</h2>
+                <h4>Javascript (Vanilla, JQuery, React), HTML, CSS (Bootsrap), Full Stack Web Development,Python, Shell</h4>
+                <h2>Lower Level Languages</h2>
+                <h4>C++ (Since 01/2014), C</h4>
+                <h2>Deep Technical Knowledge of Following</h2>
+                <h4>User Experience Oriented Design, Multiprocessor Systems, Computer Architectures (AMBA, MIPS, XEON)</h4>
+                <h2>Operating Systems</h2>
+                <h4>Linux - Superuser, Mac, Windows</h4>
+            </div>
+            <div id="hobbies-page" class="page"><br><h1>Hobbies</h1><hr />
+                <p>Dancing: Bachata, Salsa, Kizomba, Zouk</p>
+                <p>I also like lifting, hiking, and running.</p>
+            </div>
+            <div id="contact-page" class="page"><br><h1>Contact</h1><hr />
+                <form>
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                    </div>
+                    <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">I am not a robot</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <br>
+            </div>
         </div>
     </div>
     <footer>Irving Rivas 2018</footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="assets/javascript/webjs.js"></script>
 </body>
 </html>
