@@ -162,7 +162,7 @@ a.active:focus {
 @media screen and (max-width: 450px) {
     .page { 
         padding-top: 20vh;
-        height: 125vh;
+        height: 120vh;
         clear: both;
     }
     h1 {
@@ -180,4 +180,5 @@ a.active:focus {
     h5 {
         font-size: 2vh;
     }
+
 }
