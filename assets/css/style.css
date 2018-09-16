@@ -175,10 +175,6 @@ a.active:focus {
     .left-column {
         width: 100%;
         height: 20vh;
-        z-index: 1;
-        clear: both;
-        text-align: center;
-        margin-left: 0px;
     }
 
     .page { 
@@ -203,3 +199,14 @@ a.active:focus {
     }
 
 }
+
+@media screen and (max-width: 400px) {
+    .left-column {
+        width: 100%;
+        height: 25vh;
+    }
+
+    .page { 
+        padding-top: 25vh;
+        height: 125vh;
+    }
