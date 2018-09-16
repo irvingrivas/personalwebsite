@@ -100,10 +100,10 @@ a.active:focus {
     color: white !important;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1260px) {
     .left-column {
         width: 100%;
-        height: 20vh;
+        height: 10vh;
         z-index: 1;
         clear: both;
         text-align: center;
@@ -125,8 +125,8 @@ a.active:focus {
     }
     
     .page { 
-        padding-top: 20vh;
-        height: 120vh;
+        padding-top: 10vh;
+        height: 110vh;
         clear: both;
     }
 
@@ -159,12 +159,33 @@ a.active:focus {
 
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 768px) {
+    .left-column {
+        height: 15vh;
+    }
+
+    .page { 
+        padding-top: 15vh;
+        height: 115vh;
+    }
+
+}
+
+@media screen and (max-width: 440px) {
+    .left-column {
+        width: 100%;
+        height: 20vh;
+        z-index: 1;
+        clear: both;
+        text-align: center;
+        margin-left: 0px;
+    }
+
     .page { 
         padding-top: 20vh;
         height: 120vh;
-        clear: both;
     }
+
     h1 {
         font-size: 5vh;
     }
