@@ -7,9 +7,20 @@
     clear: both;
 }
 
-ul {
-    flex-direction: column;
-    align-items: center;
+.logo {
+    position: relative;
+    top: 2vh;
+    left: -1vh;
+    width: 15vh;
+    height: 15vh;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 3vh;
 }
 
 .nav {
@@ -29,18 +40,21 @@ ul {
 
 h1 {
     font-size: 8vh;
-}
+    font-family: 'Maven Pro', sans-serif;}
 
 h2 {
     font-size: 6vh;
+    font-family: 'Maven Pro', sans-serif;
 }
 
 h4 {
     font-size: 4vh;
+    font-family: 'Maven Pro', sans-serif;
 }
 
 h5 {
     font-size: 3vh;
+    font-family: 'Maven Pro', sans-serif;
 }
 
 .row,
@@ -67,32 +81,21 @@ h5 {
     left:0;
     width: 15%;
     height: 100vh;
-    background:#4aaaa5;
+    background-image: url("../images/offwhite.jpg");
+    background-size: 100vh 100vh;
     z-index: 0;
-}
-
-footer {
-    position: relative;
-    bottom: 0;
-    padding: 3vh 0;
-    clear: both;
-    font-size: 2vh;
-    color: #fff;
-    color: #ccc;
-    text-align: center;
-    background: #666;
-    border-top: 8px solid #4aaaa5;
-    height:10vh;
-    z-index: 1;
 }
 
 a {
     display: block;
     color: black;
-    font-size: 8vh;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Maven Pro', sans-serif;
 }
 
+.scroll-tag {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 3vh;
+}
 
 p {
     clear: both;
@@ -102,7 +105,7 @@ a.active:focus {
     color: white !important;
 }
 
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 768px) {
     .left-column {
         width: 100%;
         height: 10vh;
@@ -140,7 +143,7 @@ a.active:focus {
         font-size: 4vh;
     }
     
-    a,h4 {
+    h4 {
         font-size: 3vh;
     }
 

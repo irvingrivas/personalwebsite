@@ -3,7 +3,7 @@ $(document).ready(function(){
         divId = $(this).attr("href"); 
         event.preventDefault(); 
         $("html, body").animate({
-            scrollTop: $(divId).offset().top + 10
+            scrollTop: $(divId).offset().top 
         }, 1000, "easeInOutQuad");
         console.log(this);
     });
