@@ -114,12 +114,23 @@ a.active:focus {
     color: white !important;
 }
 
+@media screen and (max-height: 392px) {
+    .nav {
+        position:absolute;
+        top: 15vh; 
+        bottom: 5vh; 
+        left: 0vh; 
+        right: 0vh;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .left-column {
         display: none;
     }
     .container {
         margin-left: 5vh;
+        margin-right: 15vh;
     }
 
     .logo-right {
@@ -129,5 +140,55 @@ a.active:focus {
     .carousel-inner,
     .carousel-items {
         width: inherit;
+    }
+
+    .page {
+        height: 100%; 
+    }
+    h1 {
+        font-size: 6vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h2 {
+        font-size: 4vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h4 {
+        font-size: 3vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h5 {
+        font-size: 2vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    h1 {
+        font-size: 6vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h2 {
+        font-size: 4vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h4 {
+        font-size: 3vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+    h5 {
+        font-size: 2vh;
+        font-family: 'Source Serif Pro', serif;
+    }
+}
+@media screen and (max-width: 440px) {
+    .logo-right {
+        right: 0vh;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .container {
+        margin-right: 50px;
     }
 }
