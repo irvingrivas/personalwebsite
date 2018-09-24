@@ -5,6 +5,5 @@ $(document).ready(function(){
         $("html, body").animate({
             scrollTop: $(divId).offset().top + 5
         }, 1000, "easeInOutQuad");
-        console.log(this);
     });
  });
