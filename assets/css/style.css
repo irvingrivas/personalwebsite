@@ -18,7 +18,7 @@
 .logo-right {
     position: fixed;
     top: 1vh;
-    right: 5vh;
+    right: 2vh;
     width: 15vh;
     height: 15vh;
     display: none;
@@ -94,7 +94,22 @@ h5 {
     background-size: 100vh 100vh;
     z-index: 0;
 }
+.right-column {
+    position: fixed;
+    top:0;
+    right:0;
+    width: 18vh;
+    height: 100vh;
+    background-image: url("../images/offwhite.jpg");
+    background-size: 100vh 100vh;
+    z-index: 0;
+    display: none;
+}
 
+.nav {
+    list-style: none;
+    text-align: center;
+}
 a {
     display: block;
     color: black;
@@ -128,14 +143,18 @@ a.active:focus {
     .left-column {
         display: none;
     }
+
     .container {
         margin-left: 5vh;
         margin-right: 15vh;
     }
 
-    .logo-right {
+    .logo-right,
+    .right-column,
+    .nav-right {
         display: block;
     }
+
     .carousel,
     .carousel-inner,
     .carousel-items {
@@ -182,13 +201,13 @@ a.active:focus {
     }
 }
 @media screen and (max-width: 440px) {
-    .logo-right {
-        right: 0vh;
-    }
+
+
 }
 
 @media screen and (max-width: 310px) {
     .container {
         margin-right: 50px;
     }
+
 }
