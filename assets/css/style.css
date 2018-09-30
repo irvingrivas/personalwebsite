@@ -200,10 +200,6 @@ a.active:focus {
         font-family: 'Source Serif Pro', serif;
     }
 }
-@media screen and (max-width: 440px) {
-
-
-}
 
 @media screen and (max-width: 310px) {
     .container {
