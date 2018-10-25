@@ -1,11 +1,12 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-var path = require("path");
-var keys = require("./keys.js");
+const path = require("path");
+const keys = require("./keys.js");
+const PORT = process.env.PORT || 8080;
 
+const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
@@ -23,37 +24,33 @@ app.post("/", function (req, res) {
       secure: true,
       auth: {
             type: 'OAuth2',
-            user: keys.gmailinfo.USER,
-            serviceClient: keys.gmailinfo.CLIENTID,
-            privateKey: keys.gmailinfo.CLIENTSECRET
-    }
-    });
-    mailOptsToServer = {
-      from: req.body.email,
-      to: keys.gmailinfo.user,
-      subject: "New message from contact form at irvingrivas.com",
-      text: req.body.message
-    },
-      smtpTrans.sendMail(mailOptsToServer, function (error, response) {
-        if (error) throw error;
-        else {
-            console.log("Successfully Sent!");
+            user: keys.gmailinfo.USEREMAIL,
+            clientId: keys.gmailinfo.CLIENTID,
+            clientSecret: keys.gmailinfo.CLIENTSECRET,
+            refreshToken: keys.gmailinfo.REFRESHTOKEN,
+            accessToken: keys.gmailinfo.ACCESSTOKEN
         }
     });
+    mailOptsToServer = {
+      from: keys.gmailinfo.USEREMAIL,
+      to: keys.gmailinfo.USEREMAIL,
+      subject: "New message from " + req.body.email + " at irvingrivas.com",
+      text: req.body.message
+    },
+      smtpTrans.sendMail(mailOptsToServer, function (error) {
+        if (error) throw error;
+    });
     mailOptsToClient = {
-        from: keys.gmailinfo.user,
+        from: keys.gmailinfo.USEREMAIL,
         to: req.body.email,
         subject: "Thank you for contacting me!",
         text: "I will get back to you shortly!" + req.body.message
       },
       smtpTrans.sendMail(mailOptsToClient, function (error, response) {
         if (error) throw error;
-        else {
-            console.log("Successfully Sent!");
-        }
       });
   });
 
-app.listen(8001, function() {
-    console.log("This is running on PORT: " + 8001);
+app.listen(PORT, function() {
+    console.log("This is running on PORT: " + PORT);
 });

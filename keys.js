@@ -1,6 +1,7 @@
-console.log('this is loaded');
 exports.gmailinfo = {
+  USEREMAIL: process.env.USEREMAIL,
   CLIENTID: process.env.CLIENTID,
   CLIENTSECRET: process.env.CLIENTSECRET,
-  USER : process.env.USER,
+  ACCESSTOKEN: process.env.ACCESSTOKEN,
+  REFRESHTOKEN: process.env.REFRESHTOKEN
 };
