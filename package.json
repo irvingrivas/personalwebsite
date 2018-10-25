@@ -1,0 +1,30 @@
+{
+  "name": "personalwebsite",
+  "version": "1.0.0",
+  "description": "The purpose of this personal website is to tell visitors who I am and what I can do.",
+  "main": "keys.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "firebase": "^5.5.5",
+    "googleapis": "^27.0.0",
+    "nodemailer": "^4.6.8",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irvingrivas/personalwebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irvingrivas/personalwebsite/issues"
+  },
+  "homepage": "https://github.com/irvingrivas/personalwebsite#readme"
+}
