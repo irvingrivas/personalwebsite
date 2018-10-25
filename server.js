@@ -23,9 +23,9 @@ app.post("/", function (req, res) {
       secure: true,
       auth: {
             type: 'OAuth2',
-            user: keys.gmailinfo.user,
-            serviceClient: keys.gmailinfo.serviceClient,
-            privateKey: keys.gmailinfo.privateKey
+            user: keys.gmailinfo.USER,
+            serviceClient: keys.gmailinfo.CLIENTID,
+            privateKey: keys.gmailinfo.CLIENTSECRET
     }
     });
     mailOptsToServer = {
