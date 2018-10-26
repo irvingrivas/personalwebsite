@@ -22,5 +22,5 @@ Node
 Node Mailer
 Express
 Google reCaptcha API
-RRepresentational State Transfer (REST) GET, POST
+Representational State Transfer (REST) GET, POST
 ```
