@@ -21,8 +21,9 @@ var verified = false;
 // POST route from contact form
 app.post("/", function (req, res) {
   if (req.body.message != "" && req.body.email != "" && verified) {
-    let mailOptsToServer, mailOptsToClient, smtpTrans, emailcontent;
-    fs.readFile("movies.txt", "utf8", function(err, data) {
+    let mailOptsToServer, mailOptsToClient, smtpTrans;
+    var emailcontent = "";
+    fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
       if (err) res.status(500);
       emailcontent = data;
     });
@@ -43,7 +44,7 @@ app.post("/", function (req, res) {
       from: keys.gmailinfo.USEREMAIL,
       to: keys.gmailinfo.PERSONALEMAIL,
       subject: "New message from " + req.body.email + " @ irvingrivas.com",
-      text: req.body.message
+      text: emailcontent + req.body.message
     },
       smtpTrans.sendMail(mailOptsToServer, function (error) {
         if (error) {
