@@ -19,6 +19,7 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/javascript/webjs.js"></script>
+<script src="assets/javascript/readmsg.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
@@ -201,21 +202,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-    $("#send-emails").on("click", function() {
-        // Using a RegEx Pattern to remove spaces from searchedCharacter
-        // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-        var email_message = {
-            email: $("#user-email").val().trim(),
-            message: $("#user-message").val().trim()
-        };
-        $.post("/",email_message)
-            .then(function(data) {
-                console.log(data);
-                alert("Sending email...");
-        });
-    });
-    </script>
 </body>
 
 </html>

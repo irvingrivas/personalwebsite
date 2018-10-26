@@ -33,8 +33,8 @@ app.post("/", function (req, res) {
     });
     mailOptsToServer = {
       from: keys.gmailinfo.USEREMAIL,
-      to: keys.gmailinfo.USEREMAIL,
-      subject: "New message from " + req.body.email + " at irvingrivas.com",
+      to: keys.gmailinfo.PERSONALEMAIL,
+      subject: "New message from " + req.body.email + " @ irvingrivas.com",
       text: req.body.message
     },
       smtpTrans.sendMail(mailOptsToServer, function (error) {
@@ -46,7 +46,7 @@ app.post("/", function (req, res) {
         subject: "Thank you for contacting me!",
         text: "I will get back to you shortly!" + req.body.message
       },
-      smtpTrans.sendMail(mailOptsToClient, function (error, response) {
+      smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) throw error;
       });
   });
