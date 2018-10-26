@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
+const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 
 const app = express();
@@ -20,7 +21,11 @@ var verified = false;
 // POST route from contact form
 app.post("/", function (req, res) {
   if (req.body.message != "" && req.body.email != "" && verified) {
-    let mailOptsToServer, mailOptsToClient, smtpTrans;
+    let mailOptsToServer, mailOptsToClient, smtpTrans, emailcontent;
+    fs.readFile("movies.txt", "utf8", function(err, data) {
+      if (err) res.status(500);
+      emailcontent = data;
+    });
     smtpTrans = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -49,8 +54,8 @@ app.post("/", function (req, res) {
     mailOptsToClient = {
       from: keys.gmailinfo.USEREMAIL,
       to: req.body.email,
-      subject: "Thank you for contacting me!",
-      text: "I will get back to you shortly!" + req.body.message
+      subject: "Thank you for Contacting Irving Rivas",
+      text: fs + req.body.message
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) throw error;
