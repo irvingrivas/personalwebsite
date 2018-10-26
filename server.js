@@ -49,7 +49,8 @@ app.post("/", function (req, res) {
       smtpTrans.sendMail(mailOptsToServer, function (error) {
         if (error) {
           alert("The email you inputted does not exist!");
-          return;
+        } else {
+          alert("Thank you for submitting your message!");
         }
       });
     mailOptsToClient = {
@@ -59,10 +60,7 @@ app.post("/", function (req, res) {
       text: fs + req.body.message
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
-        if (error) throw error;
-        // If there is an error here, google servers likely went down, 404 thrown below
-        res.status(404).send("404");
-        return;
+        if (error) res.status(404).send("404");
       });
   } else {
     alert("Please check everything was submitted correctly!")
