@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
-const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 
 const app = express();
