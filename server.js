@@ -57,7 +57,7 @@ app.post("/", function (req, res) {
       from: keys.gmailinfo.USEREMAIL,
       to: req.body.email,
       subject: "Thank you for Contacting Irving Rivas",
-      text: fs + req.body.message
+      text: emailcontent + req.body.message
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) res.status(404).send("404");
