@@ -11,14 +11,16 @@ Below are the open source 'cool' pieces I used if you would like to use them in 
 Bootstrap Scrollspy
 CSS5 dynamic page and content resizing (vh,vw)
 Google Fonts Text
-Banner background
+Banner Background
 jQuery Slow Scroll "easeInOutQuad"
 ```
 
 ## Server Side
 ```
+Heroku (Server)
 Node
 Node Mailer
 Express
 Google reCaptcha API
+RRepresentational State Transfer (REST) GET, POST
 ```
