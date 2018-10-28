@@ -110,7 +110,7 @@ app.post('/submit',function(req,res){
       text: emailcontent + req.body.message
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
-        if (error) res.status(404).send("404");
+        if (error) res.status(404);
       });
     return res.json({"success": true, "msg":"Captcha passed"});
   });
