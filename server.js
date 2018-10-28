@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
+const request = require("request");
+const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -14,106 +16,65 @@ app.use(express.static(__dirname));
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-/*
-// POST route from contact form
-app.post("/", function (req, res) {
-  if (verified) {
-    let mailOptsToServer, mailOptsToClient, smtpTrans;
-    var emailcontent = "";
-    fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
-      if (err) res.status(500);
-      emailcontent = data;
-    });
-    smtpTrans = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        type: 'OAuth2',
-        user: keys.gmailinfo.USEREMAIL,
-        clientId: keys.gmailinfo.CLIENTID,
-        clientSecret: keys.gmailinfo.CLIENTSECRET,
-        refreshToken: keys.gmailinfo.REFRESHTOKEN,
-        accessToken: keys.gmailinfo.ACCESSTOKEN
-      }
-    });
-    mailOptsToServer = {
-      from: keys.gmailinfo.USEREMAIL,
-      to: keys.gmailinfo.PERSONALEMAIL,
-      subject: "New message from " + req.body.email + " @ irvingrivas.com",
-      text: emailcontent + req.body.message
-    },
-      smtpTrans.sendMail(mailOptsToServer, function (error) {
-        if (error) throw err;
-      });
-    mailOptsToClient = {
-      from: keys.gmailinfo.USEREMAIL,
-      to: req.body.email,
-      subject: "Thank you for Contacting Irving Rivas",
-      text: emailcontent + req.body.message
-    },
-      smtpTrans.sendMail(mailOptsToClient, function (error) {
-        if (error) res.status(404).send("404");
-      });
-  }
-});*/
 
-app.post('/submit',function(req,res){
+app.post("/", function (req, res) {
   // if its blank or null means user has not selected the captcha, so return the error.
-  if(req.body['g-recaptcha-response'] === undefined || 
-    req.body['g-recaptcha-response'] === '' || 
-    req.body['g-recaptcha-response'] === null) {
-    return res.json({"success": false, "msg":"Please select captcha"});
+  if (req.body.captcha === undefined ||
+    req.body.captcha === '' ||
+    req.body.captcha === null) {
+    return res.json({ "success": false, "msg": "Please select captcha" });
   }
   // req.connection.remoteAddress will provide IP address of connected user.
-  var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+  var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
-  request(verificationUrl,function(err,res,body) {
+  request(verificationUrl, function (err, res, body) {
     body = JSON.parse(body);
     console.log(body);
     // Success will be true or false depending upon captcha validation.
-    if(body.success !== undefined && !body.success) {
-      return res.json({"success": false, "msg":"Failed captcha verification"});
+    if (body.success !== undefined && !body.success) {
+      return res.json({ "success": false, "msg": "Failed captcha verification" });
     }
-    let mailOptsToServer, mailOptsToClient, smtpTrans;
-    var emailcontent = "";
-    fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
-      if (err) res.status(500);
-      emailcontent = data;
-    });
-    smtpTrans = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        type: 'OAuth2',
-        user: keys.gmailinfo.USEREMAIL,
-        clientId: keys.gmailinfo.CLIENTID,
-        clientSecret: keys.gmailinfo.CLIENTSECRET,
-        refreshToken: keys.gmailinfo.REFRESHTOKEN,
-        accessToken: keys.gmailinfo.ACCESSTOKEN
-      }
-    });
-    mailOptsToServer = {
-      from: keys.gmailinfo.USEREMAIL,
-      to: keys.gmailinfo.PERSONALEMAIL,
-      subject: "New message from " + req.body.email + " @ irvingrivas.com",
-      text: emailcontent + req.body.message
-    },
-      smtpTrans.sendMail(mailOptsToServer, function (error) {
-        if (error) throw err;
-      });
-    mailOptsToClient = {
-      from: keys.gmailinfo.USEREMAIL,
-      to: req.body.email,
-      subject: "Thank you for Contacting Irving Rivas",
-      text: emailcontent + req.body.message
-    },
-      smtpTrans.sendMail(mailOptsToClient, function (error) {
-        if (error) res.status(404);
-      });
-    return res.json({"success": true, "msg":"Captcha passed"});
   });
+  let mailOptsToServer, mailOptsToClient, smtpTrans;
+  var emailcontent = "";
+  fs.readFile("assets/views/response.html", "utf8", function (err, data) {
+    console.log(data);
+    emailcontent = data;
+  });
+  emailcontent += req.body.message
+  console.log(emailcontent);
+  smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      type: 'OAuth2',
+      user: keys.gmailinfo.USEREMAIL,
+      clientId: keys.gmailinfo.CLIENTID,
+      clientSecret: keys.gmailinfo.CLIENTSECRET,
+      refreshToken: keys.gmailinfo.REFRESHTOKEN,
+      accessToken: keys.gmailinfo.ACCESSTOKEN
+    }
+  });
+  mailOptsToServer = {
+    from: keys.gmailinfo.USEREMAIL,
+    to: keys.gmailinfo.PERSONALEMAIL,
+    subject: "New message from " + req.body.email + " @ irvingrivas.com",
+    html: emailcontent
+  },
+    smtpTrans.sendMail(mailOptsToServer, function (error) {
+      if (error) throw err;
+    });
+  mailOptsToClient = {
+    from: keys.gmailinfo.USEREMAIL,
+    to: req.body.email,
+    subject: "Thank you for Contacting Irving Rivas",
+    html: emailcontent
+  },
+    smtpTrans.sendMail(mailOptsToClient, function (error) {
+      if (error) throw error;
+    });
+  return res.json({ "success": true, "msg": "Captcha passed" });
 });
 
 app.listen(PORT, function () {
