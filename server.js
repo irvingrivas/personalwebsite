@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
 const PORT = process.env.PORT || 8080;
-
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
@@ -69,7 +69,6 @@ app.post("/", function (req, res) {
 app.post('/submit',function(req,res){
   // if its blank or null means user has not selected the captcha, so return the error.
   if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-    alert("Please select captcha");
     return JSON.stringify({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
   // req.connection.remoteAddress will provide IP address of connected user.
@@ -80,7 +79,6 @@ app.post('/submit',function(req,res){
     body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if(body.success !== undefined && !body.success) {
-      alert("Failed captcha verification");
       return JSON.stringify({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
     }
     verified = true;
