@@ -68,20 +68,22 @@ app.post("/", function (req, res) {
 
 app.post('/submit',function(req,res){
   // if its blank or null means user has not selected the captcha, so return the error.
-  if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-    return JSON.stringify({"responseCode" : 1,"responseDesc" : "Please select captcha"});
+  if(req.body['g-recaptcha-response'] === undefined || 
+    req.body['g-recaptcha-response'] === '' || 
+    req.body['g-recaptcha-response'] === null) {
+    return res.json({"success": false, "msg":"Please select captcha"});
   }
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
   request(verificationUrl,function(err,res,body) {
-    if (err) throw err;
     body = JSON.parse(body);
+    console.log(body);
     // Success will be true or false depending upon captcha validation.
     if(body.success !== undefined && !body.success) {
-      return JSON.stringify({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+      return res.json({"success": false, "msg":"Failed captcha verification"});
     }
-    verified = true;
+    return res.json({"success": true, "msg":"Captcha passed"});
   });
 });
 
