@@ -76,9 +76,9 @@ app.post("/submit", function (req, res) {
 
 app.get("/submit", function(req,res) {
   if (req.body.success) {
-    res.send("assets/views/acknowledgement.html");
+    res.sendFile(path.join(__dirname, "assets/views/acknowledgement.html"));
   } else {
-    res.send("assets/views/tryagain.html")
+    res.sendFile(path.join(__dirname, "assets/views/tryagain.html"));
   }
 })
 
