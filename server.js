@@ -12,17 +12,27 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
+var isSuccessful = false;
+var errmsg = "";
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.post("/submit", function (req, res) {
+app.get("/submit", function (req, res) {
+  res.sendFile(path.join(__dirname, "assets/views/reply.html"));
+});
+
+app.get("/submit/reply",function (req,res) {
+    return res.json( {"success": isSuccessful, "msg": msg});
+});
+
+app.post("/", function (req, res) {
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
     req.body.captcha === null) {
-    return res.json({ "success": false, "msg": "Please select captcha" });
+    errmsg = "Please select captcha"; return;
   }
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
@@ -31,7 +41,7 @@ app.post("/submit", function (req, res) {
     body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if (body.success !== undefined && !body.success) {
-      return res.json({ "success": false, "msg": "Failed captcha verification" });
+      errmsg = "Failed captcha verification"; return;
     }
   });
   let mailOptsToServer, mailOptsToClient, smtpTrans;
@@ -56,7 +66,7 @@ app.post("/submit", function (req, res) {
       from: keys.gmailinfo.USEREMAIL,
       to: keys.gmailinfo.PERSONALEMAIL,
       subject: "New message from " + req.body.email + " @ irvingrivas.com",
-      html: req.body.message
+      text: req.body.message
     },
       smtpTrans.sendMail(mailOptsToServer, function (error) {
         if (error) throw err;
@@ -65,22 +75,14 @@ app.post("/submit", function (req, res) {
       from: keys.gmailinfo.USEREMAIL,
       to: req.body.email,
       subject: "Thank you for contacting Irving Rivas",
-      text: emailcontent 
+      html: emailcontent 
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) throw error;
       });
   });
-  return res.json({ "success": true, "msg": "Captcha passed" });
+  isSuccessful = true; return;
 });
-
-app.get("/submit", function(req,res) {
-  if (req.body.success) {
-    res.sendFile(path.join(__dirname, "assets/views/acknowledgement.html"));
-  } else {
-    res.sendFile(path.join(__dirname, "assets/views/tryagain.html"));
-  }
-})
 
 app.listen(PORT, function () {
   console.log("This is running on PORT: " + PORT);
