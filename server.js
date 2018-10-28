@@ -14,8 +14,6 @@ app.use(express.static(__dirname));
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-
-var verified = false;
 /*
 // POST route from contact form
 app.post("/", function (req, res) {
@@ -77,7 +75,6 @@ app.post('/submit',function(req,res){
     if(body.success !== undefined && !body.success) {
       return res.json({"success": false, "msg":"Failed captcha verification"});
     }
-    verified = true;
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
     fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
