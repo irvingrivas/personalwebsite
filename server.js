@@ -16,10 +16,10 @@ app.get("/", function (req, res) {
 });
 
 var verified = false;
-
+/*
 // POST route from contact form
 app.post("/", function (req, res) {
-  if (req.body.message != "" && req.body.email != "" && verified) {
+  if (verified) {
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
     fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
@@ -46,11 +46,7 @@ app.post("/", function (req, res) {
       text: emailcontent + req.body.message
     },
       smtpTrans.sendMail(mailOptsToServer, function (error) {
-        if (error) {
-          alert("The email you inputted does not exist!");
-        } else {
-          alert("Thank you for submitting your message!");
-        }
+        if (error) throw err;
       });
     mailOptsToClient = {
       from: keys.gmailinfo.USEREMAIL,
@@ -61,10 +57,8 @@ app.post("/", function (req, res) {
       smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) res.status(404).send("404");
       });
-  } else {
-    alert("Please check everything was submitted correctly!")
   }
-});
+});*/
 
 app.post('/submit',function(req,res){
   // if its blank or null means user has not selected the captcha, so return the error.
@@ -83,6 +77,44 @@ app.post('/submit',function(req,res){
     if(body.success !== undefined && !body.success) {
       return res.json({"success": false, "msg":"Failed captcha verification"});
     }
+    verified = true;
+    let mailOptsToServer, mailOptsToClient, smtpTrans;
+    var emailcontent = "";
+    fs.readFile("./assets/viwes/response.html", "utf8", function(err, data) {
+      if (err) res.status(500);
+      emailcontent = data;
+    });
+    smtpTrans = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        type: 'OAuth2',
+        user: keys.gmailinfo.USEREMAIL,
+        clientId: keys.gmailinfo.CLIENTID,
+        clientSecret: keys.gmailinfo.CLIENTSECRET,
+        refreshToken: keys.gmailinfo.REFRESHTOKEN,
+        accessToken: keys.gmailinfo.ACCESSTOKEN
+      }
+    });
+    mailOptsToServer = {
+      from: keys.gmailinfo.USEREMAIL,
+      to: keys.gmailinfo.PERSONALEMAIL,
+      subject: "New message from " + req.body.email + " @ irvingrivas.com",
+      text: emailcontent + req.body.message
+    },
+      smtpTrans.sendMail(mailOptsToServer, function (error) {
+        if (error) throw err;
+      });
+    mailOptsToClient = {
+      from: keys.gmailinfo.USEREMAIL,
+      to: req.body.email,
+      subject: "Thank you for Contacting Irving Rivas",
+      text: emailcontent + req.body.message
+    },
+      smtpTrans.sendMail(mailOptsToClient, function (error) {
+        if (error) res.status(404).send("404");
+      });
     return res.json({"success": true, "msg":"Captcha passed"});
   });
 });
