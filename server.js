@@ -116,10 +116,6 @@ app.post('/submit',function(req,res){
   });
 });
 
-app.use("*",function(req,res) {
-  res.status(404).send("404");
-})
-
 app.listen(PORT, function () {
   console.log("This is running on PORT: " + PORT);
 });
