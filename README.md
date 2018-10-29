@@ -1,4 +1,4 @@
-# https://wwww.irvingrivas.com
+# https://www.irvingrivas.com
 
 The purpose of this personal website is to tell visitors who I am and what I can do.
 
