@@ -74,7 +74,7 @@ app.post("/", function (req, res) {
     mailOptsToClient = {
       from: keys.gmailinfo.USEREMAIL,
       to: req.body.email,
-      subject: "Thank you for contacting Irving Rivas",
+      subject: "Thank You for contacting Irving Rivas",
       html: emailcontent
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
