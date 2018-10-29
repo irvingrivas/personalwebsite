@@ -4,6 +4,8 @@ The purpose of this personal website is to tell visitors who I am and what I can
 
 If you would like to use my site as a template, I would greatly appreciate it if you email me for permission.
 
+Contacting me in the above webpage in the 'Contact' section is the best way to reach me.
+
 Below are the open source 'cool' pieces I used if you would like to use them in isolation.
 
 ## Client Side 
