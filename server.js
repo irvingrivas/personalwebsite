@@ -11,16 +11,16 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "app")));
 var isSuccessful = false;
 var errmsg = "";
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
 app.get("/submit", function (req, res) {
-  res.sendFile(path.join(__dirname, "assets/views/reply.html"));
+  res.sendFile(path.join(__dirname, "app/views/reply.html"));
 });
 
 app.get("/submit/reply", function (req, res) {
@@ -46,7 +46,7 @@ app.post("/", function (req, res) {
   });
   let mailOptsToServer, mailOptsToClient, smtpTrans;
   var emailcontent = "";
-  fs.readFile("assets/views/response.html", function (err, data) {
+  fs.readFile("app/views/response.html", function (err, data) {
     emailcontent = data;
     emailcontent += req.body.message;
     smtpTrans = nodemailer.createTransport({
@@ -82,6 +82,10 @@ app.post("/", function (req, res) {
       });
     isSuccessful = true; return;
   });
+});
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
 app.listen(PORT, function () {
