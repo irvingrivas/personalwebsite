@@ -23,8 +23,8 @@ app.get("/submit", function (req, res) {
   res.sendFile(path.join(__dirname, "assets/views/reply.html"));
 });
 
-app.get("/submit/reply",function (req,res) {
-    return res.json( {"success": isSuccessful, "msg": msg});
+app.get("/submit/reply", function (req, res) {
+  return res.json({ "success": isSuccessful, "msg": errmsg });
 });
 
 app.post("/", function (req, res) {
@@ -75,13 +75,13 @@ app.post("/", function (req, res) {
       from: keys.gmailinfo.USEREMAIL,
       to: req.body.email,
       subject: "Thank you for contacting Irving Rivas",
-      html: emailcontent 
+      html: emailcontent
     },
       smtpTrans.sendMail(mailOptsToClient, function (error) {
         if (error) throw error;
       });
+    isSuccessful = true; return;
   });
-  isSuccessful = true; return;
 });
 
 app.listen(PORT, function () {
