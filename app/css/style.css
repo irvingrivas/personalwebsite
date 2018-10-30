@@ -42,6 +42,7 @@ h4 {
 }
 
 h5 {
+    font-size: 1.5vw;
     font-family: 'Source Serif Pro', serif;
 }
 
@@ -151,18 +152,18 @@ a.active:focus {
     }
     
     h1 {
-        font-size: auto;
+        font-size: 6vw;
     }
     h2 {
-        font-size: auto;
+        font-size: 5vw;
     }
     h4 {
-        font-size: auto;
+        font-size: 3vw;
     }
 }
 
 @media screen and (max-width: 660px) {
     h4{
-        font-size: auto;
+        font-size: 3vw;
     }
 }
