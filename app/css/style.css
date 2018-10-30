@@ -142,7 +142,7 @@ a.active:focus {
     }
 
     .scroll-tag {
-        font-size: 3vw;
+        font-size: auto;
     }
 
     .nav {
@@ -151,18 +151,18 @@ a.active:focus {
     }
     
     h1 {
-        font-size: 6vw;
+        font-size: auto;
     }
     h2 {
-        font-size: 5vw;
+        font-size: auto;
     }
     h4 {
-        font-size: 3vw;
+        font-size: auto;
     }
 }
 
 @media screen and (max-width: 660px) {
     h4{
-        font-size: 3vw;
+        font-size: auto;
     }
 }
