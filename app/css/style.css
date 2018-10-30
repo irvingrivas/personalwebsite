@@ -4,30 +4,8 @@
 
 .page {
     height: 100vh;
+    width: 60vw;
     clear: both;
-}
-
-.logo {
-    position: relative;
-    top: 0vh;
-    left: -0.5vh;
-    width: 15vh;
-    height: 15vh;
-}
-
-.logo-right {
-    position: fixed;
-    top: 1vh;
-    right: 2vh;
-    width: 15vh;
-    height: 15vh;
-    display: none;
-}
-
-.carousel,
-.carousel-inner,
-.carousel-items {
-    width: 110vh;
 }
 
 .copyright {
@@ -40,35 +18,37 @@
 
 .nav {
     position:absolute;
-    top: 15vh; 
+    top: 6vh; 
     bottom: 15vh; 
     left: 0vh; 
     right: 0vh;
+    list-style: none;
+    text-align: center;
 }
 
 h1 {
-    font-size: 8vh;
+    font-size: 4vw;
     font-family: 'Source Serif Pro', serif;
 }
 
 h2 {
-    font-size: 6vh;
+    font-size: 3vw;
     font-family: 'Source Serif Pro', serif;
 }
 
 h4 {
-    font-size: 4vh;
+    font-size: 2vw;
     font-family: 'Source Serif Pro', serif;
 }
 
 h5 {
-    font-size: 3vh;
+    font-size: 1.5vw;
     font-family: 'Source Serif Pro', serif;
 }
 
 .row,
 .container {
-    width: 65%;
+    width: 65vw;
     clear: both;
 }
 
@@ -84,32 +64,17 @@ h5 {
     clear: both;
 }
 
-.left-column {
+.content-column {
     position: fixed;
     top:0;
     left:0;
-    width: 22vh;
+    width: 15vw;
     height: 100vh;
     background-image: url("../images/offwhite.jpg");
-    background-size: 100vh 100vh;
+    background-size: 100vh 100vw;
     z-index: 0;
-}
-.right-column {
-    position: fixed;
-    top:0;
-    right:0;
-    width: 18vh;
-    height: 100vh;
-    background-image: url("../images/offwhite.jpg");
-    background-size: 100vh 100vh;
-    z-index: 0;
-    display: none;
 }
 
-.nav {
-    list-style: none;
-    text-align: center;
-}
 a {
     display: block;
     color: black;
@@ -118,7 +83,7 @@ a {
 
 .scroll-tag {
     font-family: 'Pacifico', sans-serif;
-    font-size: 3vh;
+    font-size: 2vw;
 }
 
 p {
@@ -129,81 +94,44 @@ a.active:focus {
     color: white !important;
 }
 
-@media screen and (max-height: 392px) {
-    .nav {
-        position:absolute;
-        top: 15vh; 
-        bottom: 5vh; 
-        left: 0vh; 
-        right: 0vh;
-    }
-}
-
 @media screen and (max-width: 768px) {
-    .left-column {
-        display: none;
+    .content-column {
+        left: auto;
+        right: 0;
+        width: 25vw;
     }
 
     .container {
         margin-left: 3vw;
-        margin-right: 15vh;
-    }
-
-    .logo-right,
-    .right-column,
-    .nav-right {
-        display: block;
-    }
-
-    .carousel,
-    .carousel-inner,
-    .carousel-items {
-        width: inherit;
     }
 
     .page {
         height: 100%; 
     }
+
+    .scroll-tag {
+        font-size: 4vw;
+    }
+    
     h1 {
-        font-size: 6vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 6vw;
     }
     h2 {
-        font-size: 4vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 5vw;
     }
     h4 {
-        font-size: 3vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 3vw;
     }
     h5 {
-        font-size: 2vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 2vw;
     }
 }
 
 @media screen and (max-width: 660px) {
-    h1 {
-        font-size: 6vh;
-        font-family: 'Source Serif Pro', serif;
-    }
-    h2 {
-        font-size: 4vh;
-        font-family: 'Source Serif Pro', serif;
-    }
     h4 {
-        font-size: 3vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 3vw;
     }
     h5 {
-        font-size: 2vh;
-        font-family: 'Source Serif Pro', serif;
+        font-size: 2vw;
     }
-}
-
-@media screen and (max-width: 310px) {
-    .container {
-        margin-right: 50px;
-    }
-
 }
