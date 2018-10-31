@@ -31,8 +31,8 @@
             $("#mmes").text("Your message was sent!");
         } else {
             $("#mtitle").text("Contact Message Not Sent");
-            if (data.errmsg === "") {
-                $("#mmes").text("Your message was not sent. " + data.errmsg);
+            if (data.msg === "") {
+                $("#mmes").text("Your message was not sent. " + data.msg);
             } else {
                 $("#mmes").text("Your message was not sent. ");
             }

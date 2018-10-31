@@ -78,7 +78,7 @@ app.post("/", function (req, res) {
           },
             smtpTrans.sendMail(mailOptsToClient, function (error) {
               if (error) throw error;
-              isSuccessful = true; return;
+              isSuccessful = true;
             });
         });
     });
