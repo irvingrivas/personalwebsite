@@ -28,13 +28,13 @@
         console.log(data);
         if (data.success) {
             $("#mtitle").text("Contact Message Sent!");
-            $("#mmes").text("Your message was sucessfully sent!");
+            $("#mmes").text("Your message was sent!");
         } else {
             $("#mtitle").text("Contact Message Not Sent");
             if (data.errmsg === "") {
-                $("#mmes").text("Your message was not sucessfully sent. " + data.errmsg);
+                $("#mmes").text("Your message was not sent. " + data.errmsg);
             } else {
-                $("#mmes").text("Your message was not sucessfully sent. ");
+                $("#mmes").text("Your message was not sent. ");
             }
         }
     });
