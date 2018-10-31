@@ -1,6 +1,7 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express = require('express');
+const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
@@ -12,40 +13,40 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "app")));
-var isSuccessful = false;
-var errmsg = "";
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
-app.get("/submit", function (req, res) {
-  res.sendFile(path.join(__dirname, "app/views/reply.html"));
+app.get("/reply", function (req, res) {
+  if (app.locals.msg === undefined) {
+    app.locals.msg = "Your message was not sent. Please input contact info."
+  } return res.render("reply", {msg: app.locals.msg});
 });
 
-app.get("/submit/reply", function (req, res) {
-  return res.json({ "success": isSuccessful, "msg": errmsg });
-});
-
-app.post("/", function (req, res) {
+app.post("/reply", function (req, res) {
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
     req.body.captcha === null) {
-    errmsg = "Please select captcha"; return;
+    return app.locals.msg = "Your message was not sent. Failed captcha verification";
   }
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
-  request(verificationUrl, function (err, res, body) {
+  request(verificationUrl, function (err, result, body) {
     body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if (body.success !== undefined && !body.success) {
-      errmsg = "Failed captcha verification"; return;
+      console.log("Invalid Captcha");
+      return app.locals.msg = "Your message was not sent. Invalid Captcha";
     }
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
     fs.readFile("app/views/response.html", function (err, data) {
+
       if (err) throw err;
       emailcontent = data;
       emailcontent += req.body.message;
@@ -78,7 +79,7 @@ app.post("/", function (req, res) {
           },
             smtpTrans.sendMail(mailOptsToClient, function (error) {
               if (error) throw error;
-              isSuccessful = true;
+              return app.locals.msg = "Your message was sent!";
             });
         });
     });
