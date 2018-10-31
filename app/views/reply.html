@@ -30,7 +30,7 @@
             $("#mtitle").text("Contact Message Sent!");
             $("#mmes").text(data.success + " " + data.msg + "Your message was sent!");
         } else {
-            $("#mtitle").text("Contact Message Not Sent");
+            $("#mtitle").text(data.success + " " + data.msg + "Contact Message Not Sent");
             if (data.msg === "") {
                 $("#mmes").text("Your message was not sent. ");
             } else {
