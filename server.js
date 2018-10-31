@@ -48,7 +48,6 @@ app.post("/reply", function (req, res) {
     body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if (body.success !== undefined && !body.success) {
-      console.log("Invalid Captcha");
       return app.locals.msg = "Your message was not sent. Invalid Captcha.";
     }
     let mailOptsToServer, mailOptsToClient, smtpTrans;
