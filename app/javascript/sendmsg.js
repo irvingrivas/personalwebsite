@@ -5,9 +5,10 @@ $(document).ready(function () {
             message: $("#user-message").val().trim(),
             captcha: $("#g-recaptcha-response").val().trim()
         };
-        $.post("/reply", email_message, function(){
-            console.log("Changing URL");
-            document.location.href = "/reply"
-        });
+        $.post("/reply", email_message)
+            .success(function () {
+                console.log("Changing URL");
+                document.location.href = "/reply";
+            });
     });
 });

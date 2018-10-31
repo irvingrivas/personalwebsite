@@ -32,6 +32,8 @@ app.post("/reply", function (req, res) {
     req.body.captcha === '' ||
     req.body.captcha === null) {
     return app.locals.msg = "Your message was not sent. Failed captcha verification";
+  } else {
+    app.locals.msg = "Your message was sent!"; 
   }
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
@@ -46,7 +48,6 @@ app.post("/reply", function (req, res) {
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
     fs.readFile("app/views/response.html", function (err, data) {
-
       if (err) throw err;
       emailcontent = data;
       emailcontent += req.body.message;
@@ -79,7 +80,6 @@ app.post("/reply", function (req, res) {
           },
             smtpTrans.sendMail(mailOptsToClient, function (error) {
               if (error) throw error;
-              return app.locals.msg = "Your message was sent!";
             });
         });
     });
