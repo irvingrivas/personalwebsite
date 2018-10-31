@@ -6,7 +6,8 @@ $(document).ready(function () {
             captcha: $("#g-recaptcha-response").val().trim()
         };
         $.post("/reply", email_message, function(){
-            window.location = "http://www.irvingrivas.com/reply"
+            console.log("Change URL");
+            docuemnt.location.href = "www.irvingrivas.com/reply"
         });
     });
 });
