@@ -28,7 +28,7 @@
         console.log(data);
         if (data.success) {
             $("#mtitle").text("Contact Message Sent!");
-            $("#mmes").text("Your message was sent!");
+            $("#mmes").text(data.success + " " + data.msg + "Your message was sent!");
         } else {
             $("#mtitle").text("Contact Message Not Sent");
             if (data.msg === "") {
