@@ -41,7 +41,7 @@ app.post("/reply", function (req, res) {
   } else {
     app.locals.msg = "Your message was sent!";
   }
-  // req.connection.remoteAddress will provide IP address of connected user.
+
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
   request(verificationUrl, function (err, result, body) {
