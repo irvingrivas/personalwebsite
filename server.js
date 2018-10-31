@@ -23,7 +23,7 @@ app.get("/", function (req, res) {
 app.get("/reply", function (req, res) {
   if (app.locals.msg === undefined) {
     app.locals.msg = "Your message was not sent. Please input contact info."
-  } return res.render("reply", {msg: app.locals.msg});
+  } return res.render("reply", { msg: app.locals.msg });
 });
 
 app.post("/reply", function (req, res) {
@@ -31,9 +31,15 @@ app.post("/reply", function (req, res) {
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
     req.body.captcha === null) {
-    return app.locals.msg = "Your message was not sent. Failed captcha verification";
+    return app.locals.msg = "Your message was not sent. Failed captcha verification.";
+  } else if (req.body.email === "" && !(req.body.message === "")) {
+    return app.locals.msg = "Your message was not sent. Check email address.";
+  } else if (!(req.body.email === "") && req.body.message === "") {
+    return app.locals.msg = "Your message was not sent. Check message entry.";
+  } else if (req.body.email === "" && req.body.message === "") {
+    return app.locals.msg = "Your message was not sent. Check contact info.";
   } else {
-    app.locals.msg = "Your message was sent!"; 
+    app.locals.msg = "Your message was sent!";
   }
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
@@ -43,7 +49,7 @@ app.post("/reply", function (req, res) {
     // Success will be true or false depending upon captcha validation.
     if (body.success !== undefined && !body.success) {
       console.log("Invalid Captcha");
-      return app.locals.msg = "Your message was not sent. Invalid Captcha";
+      return app.locals.msg = "Your message was not sent. Invalid Captcha.";
     }
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
