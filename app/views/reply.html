@@ -32,9 +32,9 @@
         } else {
             $("#mtitle").text("Contact Message Not Sent");
             if (data.msg === "") {
-                $("#mmes").text("Your message was not sent. " + data.msg);
-            } else {
                 $("#mmes").text("Your message was not sent. ");
+            } else {
+                $("#mmes").text("Your message was not sent. " + data.msg);
             }
         }
     });
