@@ -16,6 +16,8 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <script src="../javascript/scrollspy.js"></script>
     <script src="../javascript/sendmsg.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -58,7 +60,8 @@
                         <br><img id="profile" class="img img-fluid img-responsive" src="../images/prof.png">
                     </div>
                     <div class="col-md-7">
-                        <br><h4><i>Hello, my name is Irving and this is my personal website! Below are links to my Github
+                        <br>
+                        <h4><i>Hello, my name is Irving and this is my personal website! Below are links to my Github
                                 and to some of my work. I do freelance work as well, contact me for more information!</i></h4>
                         <a href="https://github.com/irvingrivas" target="_blank">
                             <h4><i><img style="height: 10vh;" class="img img-fluid" src="../images/github-mark.png"></i></h4>
@@ -121,7 +124,7 @@
                 <div id="carouselControls" class="page-content carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="../images/Colorado.JPG" alt="first slide">
+                            <img class="d-block w-100" src="../images/Colorado.JPG" alt="First slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="../images/Bachata.jpg" alt="Second slide">
@@ -144,7 +147,7 @@
                 <h1 class="page-title">Contact</h1>
                 <hr />
                 <form id="contact-form" method="post" action="/reply">
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label for="user-email" style="height: 2vh">Email address</label>
                         <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
                             placeholder="Enter email" required>
@@ -156,8 +159,10 @@
                         <textarea class="form-control" style="height: 30vh;" id="user-message" rows="6" required></textarea>
                     </div>
                     <!-- The key below is a public key for users -->
-                    <div class="form-group"><div class="g-recaptcha" data-sitekey="6Lcc_HYUAAAAAGX8nEw3N5bvgWnZeBjU-HXTtDcg"></div></div>
-                    <a class="btn btn-primary text-center" href="/reply" role="button" type="submit" id="send-emails" name="submit" style="color:black;">
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6Lcc_HYUAAAAAGX8nEw3N5bvgWnZeBjU-HXTtDcg"></div>
+                    </div>
+                    <a class="btn btn-primary text-center" href="/reply" role="button" id="send-emails" style="color:black;">
                         <h5>Submit</h5>
                     </a>
                 </form>
@@ -165,5 +170,24 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal" id="response-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Contact Response</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="form-res">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
