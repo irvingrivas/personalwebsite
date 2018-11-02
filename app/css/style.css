@@ -99,6 +99,11 @@ a.active:focus {
     .content-column {
         display: none; 
     }
+
+    .page {
+        height: 100%; 
+        width: 85vw;
+    }
 }
 @media screen and (width : 1024px) and (height : 768px) {
     .content-column {
@@ -107,25 +112,44 @@ a.active:focus {
 
     .page {
         height: 100%; 
+        width: 85vw;
     }
 }
 @media screen and (width : 1366px) and (height : 1024px) {
     .content-column {
         display: none; 
+        left: auto;
+        right: 0;
+        width: 30vw;
     }
 
     .page {
         height: 100%; 
+        width: 82vw;
     }
+    
+    .container {
+        margin-left: 1vw;
+    }
+
 }
 @media screen and (width : 1024px) and (height : 1366px) {
     .content-column {
         display: none; 
+        left: auto;
+        right: 0;
+        width: 30vw;
     }
 
     .page {
         height: 100%; 
+        width: 82vw;
     }
+
+    .container {
+        margin-left: 1vw;
+    }
+
 }
 
 @media screen and (max-height : 515px) {
