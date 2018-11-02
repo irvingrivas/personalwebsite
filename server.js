@@ -1,16 +1,13 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require("path");
 const keys = require("./keys.js");
 const request = require("request");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
-const app = express();
+var app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "app")));
 
 app.get("/", function (req, res) {
@@ -39,7 +36,7 @@ app.post("/reply", function (req, res) {
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
     }
     let mailOptsToServer, mailOptsToClient, smtpTrans;
-    var emailcontent = "";
+    let emailcontent = "";
     fs.readFile("app/views/response.html", function (err, data) {
       if (err) throw err;
       emailcontent = data;
