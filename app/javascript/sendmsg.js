@@ -8,7 +8,6 @@ $(document).ready(function () {
         };
         $.post("/reply", email_message, function(data) {
             $("#form-res").text(data.msg);
-            //jQuery.noConflict(); // dirty
             $("#response-modal").modal("show");
         });
     });
