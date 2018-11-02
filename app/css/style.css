@@ -128,6 +128,17 @@ a.active:focus {
     }
 }
 
+@media screen and (height : 515px) {
+    .content-column {
+        display: none; 
+    }
+
+    .page {
+        height: 100%; 
+        width: 85vw;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .content-column {
         left: auto;
