@@ -128,7 +128,7 @@ a.active:focus {
     }
 }
 
-@media screen and (height : 515px) {
+@media screen and (max-height : 515px) {
     .content-column {
         display: none; 
     }
