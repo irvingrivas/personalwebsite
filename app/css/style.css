@@ -162,7 +162,7 @@ a.active:focus {
         font-size: 3vw;
     }
     
-    #recaptcha {
+    .g-recaptcha {
         transform: scale(0.70);
         -webkit-transform: scale(0.70);
         transform-origin: 0 0;

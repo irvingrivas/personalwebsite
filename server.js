@@ -18,27 +18,25 @@ app.get("/", function (req, res) {
 });
 
 app.post("/reply", function (req, res) {
+
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
     req.body.captcha === null) {
-    return res.json({msg: "Your message was not sent. Please validate captcha."})
+    return res.json({ msg: "Your message was not sent. Please validate captcha." })
   } else if (
     req.body.email === undefined ||
     req.body.email === '' ||
     req.body.email === null) {
-    return res.json({msg: "Your message was not sent. Please input contact info."})
-  } else {
-    msg = "Your message was sent!";
+    return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
   request(verificationUrl, function (err, result, body) {
-    body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if (body.success !== undefined && !body.success) {
-      return res.json({msg: "Your message was not sent. Invalid Captcha."});
+      return res.json({ msg: "Your message was not sent. Invalid Captcha." });
     }
     let mailOptsToServer, mailOptsToClient, smtpTrans;
     var emailcontent = "";
@@ -75,7 +73,7 @@ app.post("/reply", function (req, res) {
           },
             smtpTrans.sendMail(mailOptsToClient, function (error) {
               if (error) throw error;
-              return res.json({msg: msg});
+              return res.json({ msg: "Your message was sent!" });
             });
         });
     });
