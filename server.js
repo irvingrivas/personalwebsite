@@ -56,22 +56,22 @@ app.post("/reply", function (req, res) {
           accessToken: keys.gmailinfo.ACCESSTOKEN
         }
       });
-      mailOptsToServer = {
+      mailOptsToClient = {
         from: keys.gmailinfo.USEREMAIL,
-        to: keys.gmailinfo.PERSONALEMAIL,
-        subject: "New message from " + req.body.email + " @ irvingrivas.com",
-        text: req.body.message
+        to: req.body.email,
+        subject: "Thank You for contacting Irving Rivas",
+        html: emailcontent
       },
-        smtpTrans.sendMail(mailOptsToServer, function (err) {
-          if (err) throw err;
-          mailOptsToClient = {
+        smtpTrans.sendMail(mailOptsToClient, function (err) {
+          if (err) res.json({ msg: "Your message was not sent. Email entered cannot be reached!"});
+          mailOptsToServer = {
             from: keys.gmailinfo.USEREMAIL,
-            to: req.body.email,
-            subject: "Thank You for contacting Irving Rivas",
-            html: emailcontent
+            to: keys.gmailinfo.PERSONALEMAIL,
+            subject: "New message from " + req.body.email + " @ irvingrivas.com",
+            text: req.body.message
           },
-            smtpTrans.sendMail(mailOptsToClient, function (err) {
-              if (err) return res.json({ msg: "Your message was not sent. Email entered cannot be reached."})
+            smtpTrans.sendMail(mailOptsToServer, function (err) {
+              if (err) throw err;
               return res.json({ msg: "Your message was sent!" });
             });
         });
