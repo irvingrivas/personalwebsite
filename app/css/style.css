@@ -106,24 +106,6 @@ a.active:focus {
     }
 }
 
-@media screen and (width : 1366px) and (height : 1024px) {
-    /* .content-column {
-        display: none; 
-        left: auto;
-        right: 0;
-        width: 30vw;
-    }
-
-    .page {
-        height: 100%; 
-        width: 82vw;
-    }
-    
-    .container {
-        margin-left: 1vw;
-    } */
-
-}
 @media screen and (width : 1024px) and (height : 1366px) {
     .content-column {
         display: none; 
