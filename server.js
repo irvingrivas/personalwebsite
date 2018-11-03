@@ -1,6 +1,7 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express = require('express');
+var bodyParser = require('body-parser')
 const path = require("path");
 const keys = require("./keys.js");
 const request = require("request");
@@ -9,13 +10,15 @@ const PORT = process.env.PORT || 8080;
 var app = express();
 
 app.use(express.static(path.join(__dirname, "app")));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
 app.post("/reply", function (req, res) {
-
+  console.log(req.body);
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
