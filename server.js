@@ -18,7 +18,6 @@ app.get("/", function (req, res) {
 });
 
 app.post("/reply", function (req, res) {
-  console.log(req.body);
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
     req.body.captcha === '' ||
@@ -63,7 +62,7 @@ app.post("/reply", function (req, res) {
         subject: "New message from " + req.body.email + " @ irvingrivas.com",
         text: req.body.message
       },
-        smtpTrans.sendMail(mailOptsToServer, function (error) {
+        smtpTrans.sendMail(mailOptsToServer, function (err) {
           if (err) throw err;
           mailOptsToClient = {
             from: keys.gmailinfo.USEREMAIL,
@@ -71,8 +70,8 @@ app.post("/reply", function (req, res) {
             subject: "Thank You for contacting Irving Rivas",
             html: emailcontent
           },
-            smtpTrans.sendMail(mailOptsToClient, function (error) {
-              if (error) throw error;
+            smtpTrans.sendMail(mailOptsToClient, function (err) {
+              if (err) throw err;
               return res.json({ msg: "Your message was sent!" });
             });
         });
