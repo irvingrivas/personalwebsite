@@ -63,7 +63,10 @@ app.post("/reply", function (req, res) {
         html: emailcontent
       },
         smtpTrans.sendMail(mailOptsToClient, function (err) {
-          if (err) return res.json({ msg: "Your message was not sent. Email entered cannot be reached!"});
+          console.log(err);
+          if (err) {
+            return res.json({ msg: "Your message was not sent. Email entered cannot be reached!"});
+          }
           mailOptsToServer = {
             from: keys.gmailinfo.USEREMAIL,
             to: keys.gmailinfo.PERSONALEMAIL,

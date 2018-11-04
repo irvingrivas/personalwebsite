@@ -21,22 +21,22 @@
     <div class="container">
         <div class="text-center content-column">
             <nav id="myScrollspy" class="navbar nav-pills navbar-light nav flex-column">
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#about-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#about-page">
                     <p class="scroll-tag">About</p>
                 </a>
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#experience-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#experience-page">
                     <p class="scroll-tag">Experience</p>
                 </a>
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#education-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#education-page">
                     <p class="scroll-tag">Education</p>
                 </a>
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#skills-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#skills-page">
                     <p class="scroll-tag">Tech Skills</p>
                 </a>
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#hobbies-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#hobbies-page">
                     <p class="scroll-tag">Hobbies</p>
                 </a>
-                <a class="fas navbar-brand nav-link" style="background-color: transparent;" href="#contact-page">
+                <a class="fas navbar-brand nav-link page-control" style="background-color: transparent;" href="#contact-page">
                     <p class="scroll-tag">Contact</p>
                 </a>
             </nav>
@@ -140,17 +140,23 @@
             <div id="contact-page" class="page"><br>
                 <h1 class="page-title">Contact</h1>
                 <hr />
-                <form id="contact-form" method="post" action="/reply">
+                <form id="contact-form" method="post" class="needs-validation" novalidate>
                     <div class="form-group">
                         <label for="user-email" style="height: 2vh">Email address</label>
                         <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
                             placeholder="Enter email" required>
+                            <div class="valid-feedback">
+                                    Looks good!
+                                  </div>
                         <small id="emailHelp" style="height: 1vh;" class="form-text text-muted">We'll never share your
                             email.</small>
                     </div>
                     <div class="form-group">
                         <label for="user-message" style="height: 2vh;">Message</label>
                         <textarea class="form-control" style="height: 30vh;" id="user-message" rows="6" required></textarea>
+                        <div class="valid-feedback">
+                                Looks good!
+                              </div>
                     </div>
                     <!-- The key below is a public key for users -->
                     <div class="form-group">

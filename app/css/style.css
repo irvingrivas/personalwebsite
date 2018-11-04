@@ -91,7 +91,11 @@ p {
     clear: both;
 }
 
-a.active:focus {
+.page-control.active:focus {
+    color: white !important;
+}
+
+.page-control:hover {
     color: white !important;
 }
 
