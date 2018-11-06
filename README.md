@@ -11,7 +11,7 @@ Below are the open source 'cool' pieces I used if you would like to use them in 
 ## Client Side 
 ```
 Bootstrap Scrollspy
-CSS5 dynamic page and content resizing (vh,vw)
+CSS3 dynamic page and content resizing (vh,vw)
 Google Fonts Text
 Banner Background
 jQuery Slow Scroll "easeInOutQuad"
@@ -24,5 +24,4 @@ Node
 Express
 Node Mailer
 Google reCaptcha API
-Handlebars
 ```
