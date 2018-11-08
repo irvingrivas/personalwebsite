@@ -155,7 +155,12 @@ p {
 
     .page {
         height: 100%; 
-        width: 85vw;
+        width: 88vw;
+    }
+    .row,
+    .container {
+        width: 94vw;
+        clear: both;
     }
 }
 
