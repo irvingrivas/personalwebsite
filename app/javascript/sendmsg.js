@@ -11,4 +11,7 @@ $(document).ready(function () {
             $("#response-modal").modal("show");
         });
     });
+    $("#response-modal").on("hidden.bs.modal", function() {
+        $("#form-res").text("Sending email...");
+    });
 });

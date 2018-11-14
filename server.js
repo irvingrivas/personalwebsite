@@ -63,7 +63,6 @@ app.post("/reply", function (req, res) {
         html: emailcontent
       },
         smtpTrans.sendMail(mailOptsToClient, function (err) {
-          console.log(err);
           if (err) {
             return res.json({ msg: "Your message was not sent. Email entered cannot be reached!"});
           }
@@ -73,8 +72,7 @@ app.post("/reply", function (req, res) {
             subject: "New message from " + req.body.email + " @ irvingrivas.com",
             text: req.body.message
           },
-            smtpTrans.sendMail(mailOptsToServer, function (err) {
-              if (err) throw err;
+            smtpTrans.sendMail(mailOptsToServer, function () {
               return res.json({ msg: "Your message was sent!" });
             });
         });
