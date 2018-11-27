@@ -8,6 +8,10 @@
     clear: both;
 }
 
+.about-page-text {
+    font-family: 'Source Serif Pro', serif;
+}
+
 .copyright {
     position: absolute;
     bottom: 0;
