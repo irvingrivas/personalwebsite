@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $(".nav-link").click(function(event){ 
+    $(".page-control").click(function(event){ 
         divId = $(this).attr("href"); 
         event.preventDefault(); 
         $("html, body").animate({
