@@ -73,7 +73,7 @@ app.post("/reply", function (req, res) {
             text: req.body.message
           },
             smtpTrans.sendMail(mailOptsToServer, function () {
-              return res.json({ msg: "Your message was sent!" });
+              return res.json({ msg: "Your message was sent! Please check your inbox for confirmation." });
             });
         });
     });
