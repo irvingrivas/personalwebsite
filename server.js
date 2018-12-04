@@ -81,7 +81,7 @@ app.post("/reply", function (req, res) {
 });
 
 app.get("*", function (req, res) {
-  res.sendStatus(404);
+  res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
 app.listen(PORT, function () {
