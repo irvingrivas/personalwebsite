@@ -79,6 +79,15 @@ h5 {
     z-index: 0;
 }
 
+.dropdown {
+    position: fixed;
+    display: none;
+    vertical-align: right;
+    right:12vw;
+    top:2vh;
+    z-index: 1;
+}
+
 a {
     display: block;
     color: black;
@@ -103,23 +112,80 @@ p {
     color: white !important;
 }
 
-@media screen and (width : 768px) and (height : 1024px) {
+@media screen and (height: 768px) and (width : 1024px) {
     .content-column {
         display: none; 
+    }
+
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
     }
 
     .page {
         height: 100%; 
         width: 85vw;
     }
+
+    .scroll-tag {
+        font-size: 2vh;
+    }
+    .container {
+        margin-left: 5vw;
+    }
+}
+
+
+@media screen and (width : 768px) and (height : 1024px) {
+    .content-column {
+        display: none; 
+    }
+
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
+    }
+
+    .page {
+        height: 100%; 
+        width: 95vw;
+    }
+
+    .scroll-tag {
+        font-size: 2vh;
+    }
+
 }
 
 @media screen and (width : 1024px) and (height : 1366px) {
     .content-column {
         display: none; 
-        left: auto;
-        right: 0;
-        width: 30vw;
+    }
+
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
     }
 
     .page {
@@ -129,6 +195,10 @@ p {
 
     .container {
         margin-left: 1vw;
+    }
+
+    .scroll-tag {
+        font-size: 2vh;
     }
 
 }
@@ -136,9 +206,18 @@ p {
 @media screen and (width : 1366px) and (height : 1024px) {
     .content-column {
         display: none; 
-        left: auto;
-        right: 0;
-        width: 30vw;
+    }
+
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
     }
 
     .page {
@@ -150,6 +229,9 @@ p {
         margin-left: 1vw;
     }
 
+    .scroll-tag {
+        font-size: 2vh;
+    }
 }
 
 @media screen and (max-height : 515px) {
@@ -157,22 +239,47 @@ p {
         display: none; 
     }
 
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
+    }
+
     .page {
         height: 100%; 
         width: 88vw;
     }
+
     .row,
     .container {
         width: 94vw;
         clear: both;
     }
+
 }
 
 @media screen and (max-width: 768px) {
     .content-column {
-        left: auto;
-        right: 0;
-        width: 35vw;
+        display: none; 
+
+    }
+
+    .dropdown{
+        display: inline-block;
+    }
+
+    .highlight-control.active:focus {
+        color: gray !important;
+    }
+    
+    .highlight-control:hover {
+        color: gray !important;
     }
 
     .container {
@@ -181,7 +288,7 @@ p {
 
     .page {
         height: 100%;     
-        width: 55vw;
+        width: 88vw;
     }
 
     .scroll-tag {

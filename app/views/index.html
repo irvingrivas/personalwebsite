@@ -13,6 +13,7 @@
         crossorigin="anonymous">
     <script type="text/javascript" src="../javascript/jQuery.js"></script>
     <script type="text/javascript" src="../javascript/jQuery-ui.js"></script>
+    <script type="text/javascript" src="../javascript/popper.js"></script>
     <script type="text/javascript" src="../javascript/bootstrap.js"></script>
     <script type="text/javascript" src="../javascript/scrollspy.js"></script>
     <script type="text/javascript" src="../javascript/sendmsg.js"></script>
@@ -51,7 +52,37 @@
                 aria-controls="nav-id-collapse">
             </a>
             <div id="about-page" class="page"><br>
-                <h1 class="page-title">About Irving</h1>
+                <h1 class="page-title">About Irving
+                    <div class="btn-group dropdown">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu text-center">
+                            <!-- Dropdown menu links -->
+                            <a class="fas navbar-brand nav-link page-control highlight-control" style="background-color: transparent;"
+                                href="#about-page">
+                                <p class="scroll-tag">About <i class="fab fa-github"></i></p>
+                            </a>
+                            <a class="fas navbar-brand nav-link page-control highlight-control" style="background-color: transparent;"
+                                href="#experience-page">
+                                <p class="scroll-tag">Experience <i class="fa fa-briefcase"></i></p>
+                            </a>
+                            <a class="fas navbar-brand nav-link page-control highlight-control" style="background-color: transparent;"
+                                href="#education-page">
+                                <p class="scroll-tag">Education <i class="fa fa-university"></i></p>
+                            </a>
+                            <a class="fas navbar-brand nav-link page-control highlight-control" style="background-color: transparent;"
+                                href="#skills-page">
+                                <p class="scroll-tag">Tech Skills <i class="fa fa-desktop"></i></p>
+                            </a>
+                            <a class="fas navbar-brand nav-link page-control highlight-control" style="background-color: transparent;"
+                                href="#contact-page">
+                                <p class="scroll-tag">Contact <i class="fa fa-envelope"></i></p>
+                            </a>
+                        </div>
+                    </div>
+                </h1>
                 <hr />
                 <div style="width: inherit;" class="row">
                     <div class="col-md-5">
@@ -59,8 +90,9 @@
                     </div>
                     <div class="col-md-7">
                         <br>
-                        <h4 class="about-page-text">Hello, my name is Irving and this is my personal website! I am an
-                            experience embedded systems/software engineer with an interest in web development. I do
+                        <h4 class="about-page-text">Hello, my name is Irving and this is my personal website! I am
+                            an
+                            experienced embedded systems/software engineer with an interest in web development. I do
                             freelance work too! Contact me for more information.</h4>
                         <a href="https://github.com/irvingrivas" target="_blank">
                             <h1 style="float: left" class="fab fa-github">&nbsp;</h1>
@@ -114,7 +146,8 @@
                 <h2 class="job-title">Rutgers University</h2>
                 <h4 class="location"><i>New Brunswick, NJ &nbsp;</i></h4>
                 <h4 class="duration"><i>Sept 2012 - May 2016, Magna Cum Laude, 3.61</i></h4>
-                <h4 class="duration"><i>Student Organizations: Society of Hispanic Professional Engineers, Engineering
+                <h4 class="duration"><i>Student Organizations: Society of Hispanic Professional Engineers,
+                        Engineering
                         Governing Council, Bachata Dance Club, Salsa Club, Tau Beta Pi, Eta Kappa Nu</i></h5>
             </div>
             <div id="skills-page" class="page"><br>
@@ -126,7 +159,8 @@
                 <h2>Lower Level Languages</h2>
                 <h4><i>C++ (Since 01/2014), C</i></h4>
                 <h2>Knowledge of Following</h2>
-                <h4><i>Front End Web Development, Systems Development Life Cycle, Application Programming in Languages
+                <h4><i>Front End Web Development, Systems Development Life Cycle, Application Programming in
+                        Languages
                         Listed Above, Computer Memory Systems, Architectures, and Organization</i></h4>
                 <h2>Operating Systems</h2>
                 <h4><i>Linux - Superuser, Mac, Windows</i></h4>
