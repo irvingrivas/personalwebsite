@@ -1,13 +1,13 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express = require('express');
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const path = require("path");
 const keys = require("./keys.js");
 const request = require("request");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
-var app = express();
+const app = express();
 
 app.use(express.static(path.join(__dirname, "app")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,7 +81,7 @@ app.post("/reply", function (req, res) {
 });
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "app/views/index.html"));
+  res.sendStatus(404);
 });
 
 app.listen(PORT, function () {
