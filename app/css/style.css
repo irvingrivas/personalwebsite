@@ -8,6 +8,8 @@
     clear: both;
 }
 
+.dropdown-toggle:after { content: none }
+
 .about-page-text {
     font-family: 'Source Serif Pro', serif;
 }
