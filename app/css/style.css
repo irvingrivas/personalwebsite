@@ -8,6 +8,11 @@
     clear: both;
 }
 
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+
 .dropdown-toggle:after { content: none }
 
 .about-page-text {
@@ -269,7 +274,6 @@ p {
 @media screen and (max-width: 768px) {
     .content-column {
         display: none; 
-
     }
 
     .dropdown{
@@ -292,6 +296,7 @@ p {
         height: 100%;     
         width: 86vw;
     }
+
 
     .scroll-tag {
         font-size: 18px;
