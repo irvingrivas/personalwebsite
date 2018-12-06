@@ -10,15 +10,20 @@
 
 .dropdown-toggle:after { content: none }
 
+h1, h2, h4, h5, p,
 .about-page-text {
     font-family: 'Source Serif Pro', serif;
+}
+
+a, .scroll-tag,
+.copyright {
+    font-family: 'Pacifico', sans-serif;
 }
 
 .copyright {
     position: absolute;
     bottom: 0;
     display: block;
-    font-family: 'Pacifico', sans-serif;
     font-size: 3vh;
 }
 
@@ -34,22 +39,15 @@
 
 h1 {
     font-size: 4vw;
-    font-family: 'Source Serif Pro', serif;
-}
-
+} 
 h2 {
     font-size: 3vw;
-    font-family: 'Source Serif Pro', serif;
 }
-
-
 h4 {
     font-size: 2vw;
-    font-family: 'Source Serif Pro', serif;
 }
-
-h5 {
-    font-family: 'Source Serif Pro', serif;
+.scroll-tag {
+    font-size: 4vh;
 }
 
 .row,
@@ -58,15 +56,12 @@ h5 {
     clear: both;
 }
 
-.location {
-    float: left;
-}
-
+.location,
 .duration {
     float: left;
 }
 
-.job-title {
+p, .job-title {
     clear: both;
 }
 
@@ -91,57 +86,12 @@ h5 {
 }
 
 a {
-    display: block;
     color: black;
-    font-family: 'Pacifico', sans-serif;
 }
 
-.scroll-tag {
-    font-family: 'Pacifico', sans-serif;
-    font-size: 4vh;
-}
-
-p {
-    font-family: 'Source Serif Pro', serif;
-    clear: both;
-}
-
-.highlight-control.active:focus {
+.highlight-control.active:focus,
+.highlight-control:hover  {
     color: white !important;
-}
-
-.highlight-control:hover {
-    color: white !important;
-}
-
-@media screen and (height: 768px) and (width : 1024px) {
-    .content-column {
-        display: none; 
-    }
-
-    .dropdown{
-        display: inline-block;
-    }
-
-    .highlight-control.active:focus {
-        color: gray !important;
-    }
-    
-    .highlight-control:hover {
-        color: gray !important;
-    }
-
-    .page {
-        height: 100%; 
-        width: 85vw;
-    }
-
-    .scroll-tag {
-        font-size: 2vh;
-    }
-    .container {
-        margin-left: 5vw;
-    }
 }
 
 
@@ -154,10 +104,7 @@ p {
         display: inline-block;
     }
 
-    .highlight-control.active:focus {
-        color: gray !important;
-    }
-    
+    .highlight-control.active:focus,
     .highlight-control:hover {
         color: gray !important;
     }
@@ -186,10 +133,7 @@ p {
         display: inline-block;
     }
 
-    .highlight-control.active:focus {
-        color: gray !important;
-    }
-    
+    .highlight-control.active:focus,
     .highlight-control:hover {
         color: gray !important;
     }
@@ -212,14 +156,11 @@ p {
         display: none; 
     }
 
-    .dropdown{
+    .dropdown {
         display: inline-block;
     }
 
-    .highlight-control.active:focus {
-        color: gray !important;
-    }
-    
+    .highlight-control.active:focus,
     .highlight-control:hover {
         color: gray !important;
     }
@@ -231,11 +172,6 @@ p {
     .page {
         height: 100%;     
         width: 86vw;
-    }
-
-
-    .scroll-tag {
-        font-size: 18px;
     }
 
     .nav {
@@ -251,6 +187,9 @@ p {
     }
     h4 {
         font-size: 3vw;
+    }
+    .scroll-tag {
+        font-size: 18px;
     }
     
     .g-recaptcha {
