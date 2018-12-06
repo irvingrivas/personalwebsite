@@ -95,7 +95,7 @@ a {
 }
 
 
-@media (max-aspect-ratio: 5/3) and (min-aspect-ratio: 3/5) {
+@media (max-aspect-ratio: 2/1) and (min-aspect-ratio: 1/2) {
     .content-column {
         display: none; 
     }
@@ -147,6 +147,10 @@ a {
     .container {
         width: 94vw;
         clear: both;
+    }
+
+    .container {
+        margin-left: 3vw;
     }
 
 }
