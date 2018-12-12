@@ -89,6 +89,10 @@ a {
     color: black;
 }
 
+.page-control {
+    background-color: transparent !important;
+}
+
 .highlight-control.active:focus,
 .highlight-control:hover  {
     color: white !important;
