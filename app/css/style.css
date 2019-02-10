@@ -8,6 +8,10 @@
     clear: both;
 }
 
+br {
+    line-height: 5vh;
+ }
+
 .dropdown-toggle:after { content: none }
 
 h1, h2, h4, h5, p,
@@ -56,6 +60,10 @@ h4 {
     clear: both;
 }
 
+.container {
+    margin-left: 20%;
+}
+
 .location,
 .duration {
     float: left;
@@ -80,8 +88,8 @@ p, .job-title {
     position: fixed;
     display: none;
     vertical-align: right;
-    right:12vw;
-    top:2vh;
+    right: 12vw;
+    top: 3vh;
     z-index: 1;
 }
 
