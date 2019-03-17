@@ -14,9 +14,9 @@ br {
 
 .dropdown-toggle:after { content: none }
 
-h1, h2, h4, h5, p,
+h1, h2, h4, h5, h6, p,
 .about-page-text {
-    font-family: 'Roboto:500', serif;
+    font-family: 'Roboto:300', serif;
 }
 
 a, .scroll-tag,
