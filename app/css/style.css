@@ -65,11 +65,12 @@ h4 {
 }
 
 .location,
+.school,
 .duration {
     float: left;
 }
 
-p, .job-title {
+p, .job-title, .duration {
     clear: both;
 }
 
