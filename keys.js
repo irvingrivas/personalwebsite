@@ -1,5 +1,5 @@
 exports.gmailinfo = {
-  USEREMAIL: process.env.USEREMAIL,
+  NOREPLYEMAIL: process.env.NOREPLYEMAIL,
   PERSONALEMAIL: process.env.PERSONALEMAIL,
   CLIENTID: process.env.CLIENTID,
   CLIENTSECRET: process.env.CLIENTSECRET,

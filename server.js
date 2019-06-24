@@ -49,7 +49,7 @@ app.post("/reply", function (req, res) {
         secure: true,
         auth: {
           type: 'OAuth2',
-          user: keys.gmailinfo.USEREMAIL,
+          user: keys.gmailinfo.NOREPLYEMAIL,
           clientId: keys.gmailinfo.CLIENTID,
           clientSecret: keys.gmailinfo.CLIENTSECRET,
           refreshToken: keys.gmailinfo.REFRESHTOKEN,
@@ -57,7 +57,7 @@ app.post("/reply", function (req, res) {
         }
       });
       mailOptsToClient = {
-        from: keys.gmailinfo.USEREMAIL,
+        from: keys.gmailinfo.NOREPLYEMAIL,
         to: req.body.email,
         subject: "Thank You For Contacting Irving Rivas",
         html: emailcontent
@@ -67,7 +67,7 @@ app.post("/reply", function (req, res) {
             return res.json({ msg: "Your message was not sent. Email entered cannot be reached!"});
           }
           mailOptsToServer = {
-            from: keys.gmailinfo.USEREMAIL,
+            from: keys.gmailinfo.NOREPLYEMAIL,
             to: keys.gmailinfo.PERSONALEMAIL,
             subject: "New message from " + req.body.email + " @ irvingrivas.com",
             text: req.body.message
