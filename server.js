@@ -68,12 +68,13 @@ app.post("/reply", (req, res) => {
     to      : req.body.email,
     subject : "Thank You For Contacting Irving Rivas",
     html    : emailContent
-  }, (err, info) => {
+  }, async (err, info) => {
     if (err) {
+      console.log(err);
       return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
     } else {
-      console.log("Message " + info.messageId + "sent");
+      console.log("Message: " + info.messageId + "sent");
     }
   });
 
@@ -83,12 +84,13 @@ app.post("/reply", (req, res) => {
     to      : keys.gmailinfo.PERSONALEMAIL,
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
-  }, (err, info) => {
+  }, async (err, info) => {
     if (err) throw err;
-    console.log("Message " + info.messageId + "sent");
+    console.log("Message: " + info.messageId + "sent");
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
   });
+  
 });
 
 app.get("*", (req, res) => {
