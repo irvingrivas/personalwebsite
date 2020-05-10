@@ -53,35 +53,41 @@ app.post("/reply", (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      type: 'OAuth2',
-      user: keys.gmailinfo.NOREPLYEMAIL,
-      clientId: keys.gmailinfo.CLIENTID,
-      clientSecret: keys.gmailinfo.CLIENTSECRET,
-      refreshToken: keys.gmailinfo.REFRESHTOKEN,
-      accessToken: keys.gmailinfo.ACCESSTOKEN
+      type         : 'OAuth2',
+      user         : keys.gmailinfo.NOREPLYEMAIL,
+      clientId     : keys.gmailinfo.CLIENTID,
+      clientSecret : keys.gmailinfo.CLIENTSECRET,
+      refreshToken : keys.gmailinfo.REFRESHTOKEN,
+      accessToken  : keys.gmailinfo.ACCESSTOKEN
     }
   });
 
   // Send mail to User
   transporter.sendMail({
-    from: keys.gmailinfo.NOREPLYEMAIL,
-    to: req.body.email,
-    subject: "Thank You For Contacting Irving Rivas",
-    html: emailContent
-  }, (err) => {
-    if (err) return res.json({ msg: "Your message was not sent. " +
+    from    : keys.gmailinfo.NOREPLYEMAIL,
+    to      : req.body.email,
+    subject : "Thank You For Contacting Irving Rivas",
+    html    : emailContent
+  }, (err, info) => {
+    if (err) {
+      return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
+    } else {
+      console.log("Message " + info.messageId + "sent");
+    }
   });
 
   // Send mail to me 
   transporter.sendMail({
-    from: keys.gmailinfo.NOREPLYEMAIL,
-    to: keys.gmailinfo.PERSONALEMAIL,
-    subject: "New message from " + req.body.email + " @ irvingrivas.com",
-    text: req.body.message
-  }, () => {
-      return res.json({ msg: "Your message was sent! " +
-        "Please check your inbox for confirmation." });
+    from    : keys.gmailinfo.NOREPLYEMAIL,
+    to      : keys.gmailinfo.PERSONALEMAIL,
+    subject : "New message from " + req.body.email + " @ irvingrivas.com",
+    text    : req.body.message
+  }, (err, info) => {
+    if (err) throw err;
+    console.log("Message " + info.messageId + "sent");
+    return res.json({ msg: "Your message was sent! " +
+      "Please check your inbox for confirmation." });
   });
 });
 
