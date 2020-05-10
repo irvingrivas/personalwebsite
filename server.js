@@ -70,11 +70,10 @@ app.post("/reply", (req, res) => {
     html    : emailContent
   }, async (err, info) => {
     if (err) {
-      console.log(err);
       return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
     } else {
-      console.log("Message: " + info.messageId + "sent");
+      console.log("Message to user sent with Id: " + info.messageId + "sent");
     }
   });
 
@@ -86,11 +85,11 @@ app.post("/reply", (req, res) => {
     text    : req.body.message
   }, async (err, info) => {
     if (err) throw err;
-    console.log("Message: " + info.messageId + "sent");
+    console.log("Message to me sent with Id: " + info.messageId + "sent");
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
   });
-  
+
 });
 
 app.get("*", (req, res) => {
