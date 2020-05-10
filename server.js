@@ -67,7 +67,7 @@ app.post("/reply", (req, res) => {
     from: keys.gmailinfo.NOREPLYEMAIL,
     to: req.body.email,
     subject: "Thank You For Contacting Irving Rivas",
-    html: emailcontent
+    html: emailContent
   }, (err) => {
     if (err) return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
