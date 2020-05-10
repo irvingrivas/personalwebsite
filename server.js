@@ -41,14 +41,10 @@ app.post("/reply", (req, res) => {
   });
 
   // Get email content from user message
-  let emailContent = req.body.message;
-  fs.readFileSync("app/views/response.html", (err, data) => {
-    if (err) throw err;
-    emailContent = data + emailContent;
-  });
+  let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
 
-  // Establish SMPT Transport
-  let transporter = nodemailer.createTransport({
+  // Establish SMTP Transport
+  let transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -63,12 +59,12 @@ app.post("/reply", (req, res) => {
   });
 
   // Send mail to User
-  transporter.sendMail({
+  transport.sendMail({
     from    : keys.gmailinfo.NOREPLYEMAIL,
     to      : req.body.email,
     subject : "Thank You For Contacting Irving Rivas",
     html    : emailContent
-  }, async (err, info) => {
+  }, (err, info) => {
     if (err) {
       return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
@@ -78,12 +74,12 @@ app.post("/reply", (req, res) => {
   });
 
   // Send mail to me 
-  transporter.sendMail({
+  transport.sendMail({
     from    : keys.gmailinfo.NOREPLYEMAIL,
     to      : keys.gmailinfo.PERSONALEMAIL,
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
-  }, async (err, info) => {
+  }, (err, info) => {
     if (err) throw err;
     console.log("Message to me sent with Id: " + info.messageId + "sent");
     return res.json({ msg: "Your message was sent! " +
