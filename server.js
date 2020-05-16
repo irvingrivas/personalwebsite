@@ -65,12 +65,7 @@ app.post("/reply", (req, res) => {
     subject : "Thank You For Contacting Irving Rivas",
     html    : emailContent
   }, (err, info) => {
-    if (err) {
-      return res.json({ msg: "Your message was not sent. " +
-      "Please check your email entry on form." });
-    } else {
       console.log("Message to user sent with Id: " + info.messageId + "sent");
-    }
   });
 
   // Send mail to me 
@@ -80,7 +75,6 @@ app.post("/reply", (req, res) => {
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
   }, (err, info) => {
-    if (err) throw err;
     console.log("Message to me sent with Id: " + info.messageId + "sent");
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
