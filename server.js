@@ -67,7 +67,7 @@ app.post("/reply", (req, res) => {
   }, (err, info) => {
     if (err) {
       return res.json({ msg: "Your message was not sent. " +
-      "Please check your email entry on form." });
+        "Please check your email entry on form." });
     } else {
       console.log("Message to user sent with Id: " + info.messageId + "sent");
     }
