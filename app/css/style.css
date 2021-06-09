@@ -27,12 +27,14 @@ a, .scroll-tag,
 .copyright {
     position: absolute;
     bottom: 0;
+    left: 2vh; 
+    right: 2vh;
     display: block;
     font-size: 3vh;
 }
 
 .nav {
-    position:absolute;
+    position: absolute;
     top: 15vh; 
     bottom: 25vh; 
     left: 0vh; 
