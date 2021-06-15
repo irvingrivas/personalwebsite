@@ -16,7 +16,7 @@ jQuery Slow Scroll
 
 ## Server Side
 ```
-Amazon Elastic Compute Cloud / Amazon EC2 (Server)
+Heroku
 Node
 Express
 Node Mailer
