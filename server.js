@@ -1,7 +1,6 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
 const express    = require('express');
-const bodyParser = require('body-parser')
 const path       = require("path");
 const keys       = require("./keys.js");
 const request    = require("request");
@@ -10,8 +9,8 @@ const PORT       = process.env.PORT || 8080;
 const app        = express();
 
 app.use(express.static(path.join(__dirname, "app")));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
@@ -34,7 +33,7 @@ app.post("/reply", (req, res) => {
   // Hitting GET request to the Verification URL.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + 
     keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
-    "&remoteip=" + req.connection.remoteAddress;
+    "&remoteip=" + req.socket.remoteAddress;
   
   request(verificationUrl, (err) => {
     if (err) return res.json({ msg: "Your message was not sent. Invalid Captcha." });
