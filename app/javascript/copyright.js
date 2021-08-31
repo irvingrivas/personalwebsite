@@ -1,3 +1,3 @@
 $(document).ready(function () {
-    $("#copyright-text").text("Irving Rivas © " + moment().format('YYYY'));
+    $(".copyright").text("Irving Rivas © " + moment().format('YYYY'));
 });
