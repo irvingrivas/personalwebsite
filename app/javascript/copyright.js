@@ -1,3 +1,4 @@
 $(document).ready(function () {
-    $(".copyright").text("Irving Rivas © " + moment().format('YYYY'));
+    let date = new Date();
+    $(".copyright").text("Irving Rivas © " + date.getFullYear().toString());
 });
