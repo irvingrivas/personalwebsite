@@ -7,10 +7,12 @@ const request    = require("request");
 const fs         = require("fs");
 const PORT       = process.env.PORT || 8080;
 const app        = express();
+const enforce    = require("express-sslify");
 
 app.use(express.static(path.join(__dirname, "app")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.post("/reply", (req, res) => {
 
