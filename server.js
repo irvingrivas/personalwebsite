@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, "app")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "app/views/index.html"));
+});
+
 app.post("/reply", (req, res) => {
 
   // if its blank or null means user has not selected the captcha, so return the error.
