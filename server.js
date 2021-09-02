@@ -11,11 +11,8 @@ const app        = express();
 app.use(express.static(path.join(__dirname, "app")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.enable('trust proxy');
 
-app.post("/reply", (req, res, next) => {
-
-  req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+app.post("/reply", (req, res) => {
 
   // if its blank or null means user has not selected the captcha, so return the error.
   if (req.body.captcha === undefined ||
@@ -86,11 +83,10 @@ app.post("/reply", (req, res, next) => {
 
 });
 
-app.get("*", (req, res, next) => {
-  req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
 app.listen(PORT, () => {
-  console.log("This is running on https://localhost:" + PORT);
+  console.log("This is running on http://localhost:" + PORT);
 });
