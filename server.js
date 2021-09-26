@@ -1,9 +1,9 @@
 require("dotenv").config();
-const nodemailer = require('nodemailer');
-const express    = require('express');
+const nodemailer = require("nodemailer");
+const express    = require("express");
 const path       = require("path");
 const keys       = require("./keys.js");
-const request    = require("request");
+const axios      = require("axios");
 const fs         = require("fs");
 const PORT       = process.env.PORT || 8080;
 const app        = express();
@@ -43,8 +43,9 @@ app.post("/reply", (req, res) => {
     keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
     "&remoteip=" + req.socket.remoteAddress;
   
-  request(verificationUrl, (err) => {
-    if (err) return res.json({ msg: "Your message was not sent. Invalid Captcha." });
+  axios.get(verificationUrl)
+    .catch((err) => {
+      return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
   // Get email content from user message
@@ -95,7 +96,7 @@ app.post("/reply", (req, res) => {
 
 });
 
-app.get("*", (req, res, next) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
