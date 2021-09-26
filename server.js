@@ -16,16 +16,17 @@ app.use(express.json());
 // Ensure https 'gets' only, based on express-sslify code
 app.use((req, res, next) => {
 
-  // insecure, redirect!
-  if (!req.secure) {
+  // secure, proceed normally
+  if (req.secure) {
+    next();
+  } else { // insecure, redirect!
     if (["GET", "HEAD"].includes(req.method)) {
       let host = (req.headers['x-forwarded-host'] || req.headers.host);
       res.redirect(301, "https://" + host + req.originalUrl);
+    } else {
+      res.status(403).send("Please use HTTPS when submitting data to this server.");
     }
   }
-
-  // secure, proceed normally
-  next();
 });
 
 app.post("/reply", (req, res) => {
