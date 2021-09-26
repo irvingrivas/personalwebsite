@@ -53,9 +53,6 @@ app.post("/reply", (req, res) => {
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
-  // Get email content from user message
-  let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
-
   // Establish SMTP Transport
   let transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -71,7 +68,10 @@ app.post("/reply", (req, res) => {
     }
   });
 
-  // Send mail to User
+  // Get email content from user message
+  let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
+
+  // Send mail to user
   transport.sendMail({
     from    : keys.gmailinfo.NOREPLYEMAIL,
     to      : req.body.email,
@@ -82,10 +82,10 @@ app.post("/reply", (req, res) => {
   }).catch((err) => {
     if (err) console.log(err);
     return res.json({ msg: "Your message was not sent. " +
-    "Please check your email entry on form." });
+      "Please check your email entry on form." });
   });
 
-  // Send mail to me 
+  // Send mail to me
   transport.sendMail({
     from    : keys.gmailinfo.NOREPLYEMAIL,
     to      : keys.gmailinfo.PERSONALEMAIL,
@@ -95,10 +95,10 @@ app.post("/reply", (req, res) => {
     console.log("Message to me sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
     if (err) console.log(err);
-    return res.json({ msg: "Your message was sent! " +
-      "Please check your inbox for confirmation." });
   });
 
+  return res.json({ msg: "Your message was sent! " +
+    "Please check your inbox for confirmation." });
 });
 
 app.get("*", (req, res) => {
