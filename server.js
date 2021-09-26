@@ -17,15 +17,11 @@ app.use(express.json());
 app.use((req, res, next) => {
 
   // secure, proceed normally
-  if (req.secure) {
+  if (req.secure || ((req.headers["x-forwarded-proto"]).startsWith("https"))) {
     next();
-  } else { // insecure, redirect!
-    if (["GET", "HEAD"].includes(req.method)) {
-      let host = (req.headers['x-forwarded-host'] || req.headers.host);
-      res.redirect(301, "https://" + host + req.originalUrl);
-    } else {
-      res.status(403).send("Please use HTTPS when submitting data to this server.");
-    }
+  // insecure, redirect!
+  } else if (["GET", "HEAD"].includes(req.method)) {
+    res.redirect(301, "https://" + req.headers.host + req.originalUrl);
   }
 });
 
