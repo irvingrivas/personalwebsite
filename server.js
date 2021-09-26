@@ -7,13 +7,12 @@ const request    = require("request");
 const fs         = require("fs");
 const PORT       = process.env.PORT || 8080;
 const app        = express();
-const enforce    = require("express-sslify");
 
 app.use(express.static(path.join(__dirname, "app")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Ensure https 'gets' only, based on express-sslify code
+// Ensure https 'gets' only, based on express-sslify (MIT License) code
 app.use((req, res, next) => {
 
   // secure, proceed normally
