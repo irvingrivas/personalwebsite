@@ -39,8 +39,7 @@ app.post("/reply", (req, res) => {
   }
 
   // Hitting request to the Verification URL.
-  (async () => { 
-    await axios({
+  axios({
     method: "post",
     url: "https://www.google.com/recaptcha/api/siteverify",
     params: {
@@ -50,9 +49,9 @@ app.post("/reply", (req, res) => {
     }}).then((info) => {
       console.log(info);
     }).catch((err) => {
-      if (err) throw err;
+      if (err) console.log(err);
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
-  })});
+  });
 
   // Get email content from user message
   let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
@@ -81,7 +80,7 @@ app.post("/reply", (req, res) => {
   }).then((info) => {
     console.log("Message to user sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
-    if (err) throw err;
+    if (err) console.log(err);
     return res.json({ msg: "Your message was not sent. " +
     "Please check your email entry on form." });
   });
@@ -95,7 +94,7 @@ app.post("/reply", (req, res) => {
   }).then((info) => {
     console.log("Message to me sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
-    if (err) throw err;
+    if (err) console.log(err);
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
   });
