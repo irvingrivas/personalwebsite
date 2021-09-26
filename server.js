@@ -64,6 +64,10 @@ app.post("/reply", (req, res) => {
       refreshToken : keys.gmailinfo.REFRESHTOKEN,
       accessToken  : keys.gmailinfo.ACCESSTOKEN
     }
+  }).then((info) => {
+    console.log(info);
+  }).catch((err) => {
+    console.log(err);
   });
 
   // Get email content from user message
