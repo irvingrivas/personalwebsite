@@ -52,7 +52,7 @@ app.post("/reply", (req, res) => {
     }).catch((err) => {
       if (err) throw err;
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
-  });
+  })});
 
   // Get email content from user message
   let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
