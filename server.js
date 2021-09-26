@@ -39,7 +39,8 @@ app.post("/reply", (req, res) => {
   }
 
   // Hitting request to the Verification URL.
-  axios({
+  (async () => { 
+    await axios({
     method: "post",
     url: "https://www.google.com/recaptcha/api/siteverify",
     params: {
