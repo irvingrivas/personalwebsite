@@ -43,9 +43,9 @@ app.post("/reply", (req, res) => {
     keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
     "&remoteip=" + req.socket.remoteAddress;
   
-  axios.get(verificationUrl)
-    .then((response) => {
-      console.log(response);
+  axios.post(verificationUrl)
+    .then((info) => {
+      console.log(info);
     }).catch((err) => {
       if (err) throw err;
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
