@@ -47,6 +47,7 @@ app.post("/reply", (req, res) => {
     .then((response) => {
       console.log(response);
     }).catch((err) => {
+      if (err) throw err;
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
@@ -74,13 +75,12 @@ app.post("/reply", (req, res) => {
     to      : req.body.email,
     subject : "Thank You For Contacting Irving Rivas",
     html    : emailContent
-  }, (err, info) => {
-    if (err) {
-      return res.json({ msg: "Your message was not sent. " +
-        "Please check your email entry on form." });
-    } else {
-      console.log("Message to user sent with Id: " + info.messageId + "sent");
-    }
+  }).then((info) => {
+    console.log("Message to user sent with Id: " + info.messageId + "sent");
+  }).catch((err) => {
+    if (err) throw err;
+    return res.json({ msg: "Your message was not sent. " +
+    "Please check your email entry on form." });
   });
 
   // Send mail to me 
@@ -89,9 +89,10 @@ app.post("/reply", (req, res) => {
     to      : keys.gmailinfo.PERSONALEMAIL,
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
-  }, (err, info) => {
-    if (err) throw err;
+  }).then((info) => {
     console.log("Message to me sent with Id: " + info.messageId + "sent");
+  }).catch((err) => {
+    if (err) throw err;
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
   });
