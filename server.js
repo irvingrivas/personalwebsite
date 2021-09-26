@@ -38,13 +38,15 @@ app.post("/reply", (req, res) => {
     return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
-  // Hitting GET request to the Verification URL.
-  var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + 
-    keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
-    "&remoteip=" + req.socket.remoteAddress;
-  
-  axios.post(verificationUrl)
-    .then((info) => {
+  // Hitting request to the Verification URL.
+  axios({
+    method: "post",
+    url: "https://www.google.com/recaptcha/api/siteverify",
+    params: {
+      secret: keys.gmailinfo.CAPTCHASECRETKEY,
+      response: req.body.captcha,
+      remoteip: req.socket.remoteAddress
+    }}).then((info) => {
       console.log(info);
     }).catch((err) => {
       if (err) throw err;
