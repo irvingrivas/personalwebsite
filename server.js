@@ -44,7 +44,9 @@ app.post("/reply", (req, res) => {
     "&remoteip=" + req.socket.remoteAddress;
   
   axios.get(verificationUrl)
-    .catch((err) => {
+    .then((response) => {
+      console.log(response);
+    }).catch((err) => {
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
