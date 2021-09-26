@@ -20,5 +20,6 @@ Heroku
 Node
 Express
 Node Mailer
-Google reCaptcha API
+Google reCaptcha v2
+Github Dependabot
 ```
