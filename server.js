@@ -26,15 +26,13 @@ app.use((req, res, next) => {
 
 app.post("/reply", (req, res) => {
 
-  // if its blank or null means user has not selected the captcha, so return the error.
-  if (req.body.captcha === undefined ||
-    req.body.captcha === '' ||
-    req.body.captcha === null) {
+  // If its blank or null, it means user has not selected the captcha, so return the error.
+  if (req.body.captcha) {
     return res.json({ msg: "Your message was not sent. Please validate captcha." })
-  } else if (
-    req.body.email === undefined ||
-    req.body.email === '' ||
-    req.body.email === null) {
+  }
+
+  // if its blank or null, it means user has not entered an email, so return the error.
+  if (req.body.email) {
     return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
@@ -49,7 +47,7 @@ app.post("/reply", (req, res) => {
     }}).then((info) => {
       console.log(info);
     }).catch((err) => {
-      if (err) console.log(err);
+      console.log(err);
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
@@ -66,10 +64,15 @@ app.post("/reply", (req, res) => {
       refreshToken : keys.gmailinfo.REFRESHTOKEN,
       accessToken  : keys.gmailinfo.ACCESSTOKEN
     }
+  }).then((info) => {
+    console.log(info);
+  }).catch((err) => {
+    console.log(err);
   });
 
   // Get email content from user message
-  let emailContent = fs.readFileSync(path.join(__dirname, "app/views/response.html")) + req.body.message;
+  let emailContent = fs.readFileSync(path.join(__dirname, 
+    "app/views/response.html")) + req.body.message;
 
   // Send mail to user
   transport.sendMail({
@@ -80,7 +83,7 @@ app.post("/reply", (req, res) => {
   }).then((info) => {
     console.log("Message to user sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
-    if (err) console.log(err);
+    console.log(err);
     return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
   });
@@ -94,7 +97,7 @@ app.post("/reply", (req, res) => {
   }).then((info) => {
     console.log("Message to me sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
-    if (err) console.log(err);
+    console.log(err);
   });
 
   return res.json({ msg: "Your message was sent! " +
