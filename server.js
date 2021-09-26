@@ -12,7 +12,21 @@ const enforce    = require("express-sslify");
 app.use(express.static(path.join(__dirname, "app")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
+// Ensure https 'gets' only, based on express-sslify code
+app.use((req, res, next) => {
+
+  // insecure, redirect!
+  if (!req.secure) {
+    if (["GET", "HEAD"].includes(req.method)) {
+      let host = (req.headers['x-forwarded-host'] || req.headers.host);
+      res.redirect(301, "https://" + host + req.originalUrl);
+    }
+  }
+
+  // secure, proceed normally
+  next();
+});
 
 app.post("/reply", (req, res) => {
 
@@ -85,7 +99,7 @@ app.post("/reply", (req, res) => {
 
 });
 
-app.get("*", (req, res) => {
+app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "app/views/index.html"));
 });
 
