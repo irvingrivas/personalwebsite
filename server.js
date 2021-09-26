@@ -27,12 +27,12 @@ app.use((req, res, next) => {
 app.post("/reply", (req, res) => {
 
   // If its blank or null, it means user has not selected the captcha, so return the error.
-  if (req.body.captcha) {
+  if (!req.body.captcha) {
     return res.json({ msg: "Your message was not sent. Please validate captcha." })
   }
 
   // if its blank or null, it means user has not entered an email, so return the error.
-  if (req.body.email) {
+  if (!req.body.email) {
     return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
