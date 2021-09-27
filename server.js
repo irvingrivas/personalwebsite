@@ -3,7 +3,6 @@ const nodemailer = require("nodemailer");
 const express    = require("express");
 const path       = require("path");
 const keys       = require("./keys.js");
-const axios      = require("axios");
 const fs         = require("fs");
 const PORT       = process.env.PORT || 8080;
 const app        = express();
@@ -36,15 +35,14 @@ app.post("/reply", (req, res) => {
     return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
+  // Google api verification URL.
+  let verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + 
+    keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
+    "&remoteip=" + req.socket.remoteAddress;
+
   // Hitting request to the Verification URL.
-  axios({
-    method: "post",
-    url: "https://www.google.com/recaptcha/api/siteverify",
-    params: {
-      secret: keys.gmailinfo.CAPTCHASECRETKEY,
-      response: req.body.captcha,
-      remoteip: req.socket.remoteAddress
-    }}).then((response) => {
+  fetch(verificationUrl, { method: "POST"
+    }).then((response) => {
       console.log(response.data);
     }).catch((err) => {
       console.log(err);
@@ -98,7 +96,6 @@ app.post("/reply", (req, res) => {
     return res.json({ msg: "Your message was sent! " +
       "Please check your inbox for confirmation." });
   });
-
 });
 
 app.get("*", (req, res) => {
