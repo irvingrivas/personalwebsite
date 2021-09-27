@@ -43,7 +43,7 @@ app.post("/reply", (req, res) => {
   // Hitting request to the Verification URL.
   fetch(verificationUrl, { method: "POST"
     }).then((response) => {
-      console.log(response.data);
+      console.log(JSON.stringify(response.data)); // Needed for fetch
     }).catch((err) => {
       console.log(err);
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
