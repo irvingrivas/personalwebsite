@@ -70,13 +70,16 @@ app.post("/reply", (req, res) => {
     console.log(err);
   });
 
+  // Get email content from user message
+  let emailContent = fs.readFileSync(path.join(__dirname, 
+    "app/views/response.html")) + req.body.message;
+
   // Send mail to user
   transport.sendMail({
     from    : keys.gmailinfo.NOREPLYEMAIL,
     to      : req.body.email,
     subject : "Thank You For Contacting Irving Rivas",
-    html    : fs.readFileSync(path.join(__dirname, 
-      "app/views/response.html")) + req.body.message
+    html    : emailContent
   }).then((info) => {
     console.log("Message to user sent with Id: " + info.messageId + "sent");
   }).catch((err) => {
@@ -93,11 +96,12 @@ app.post("/reply", (req, res) => {
     text    : req.body.message
   }).then((info) => {
     console.log("Message to me sent with Id: " + info.messageId + "sent");
-    return res.json({ msg: "Your message was sent! " +
-      "Please check your inbox for confirmation." })
   }).catch((err) => {
     console.log(err);
   });
+
+  return res.json({ msg: "Your message was sent! " +
+    "Please check your inbox for confirmation." });
 });
 
 app.get("*", (req, res) => {
