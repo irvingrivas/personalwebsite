@@ -76,12 +76,13 @@ app.post("/reply", (req, res) => {
     to      : req.body.email,
     subject : "Thank You For Contacting Irving Rivas",
     html    : emailContent
-  }).then((info) => {
-    console.log("Message to user sent with Id: " + info.messageId + "sent");
-  }).catch((err) => {
-    console.log(err);
-    return res.json({ msg: "Your message was not sent. " +
-      "Please check your email entry on form." });
+  }, (err, info) => {
+    if (err) {
+      return res.json({ msg: "Your message was not sent. " +
+        "Please check your email entry on form." });
+    } else {
+      console.log("Message to user sent with Id: " + info.messageId + "sent");
+    }
   });
 
   // Send mail to me
@@ -90,10 +91,9 @@ app.post("/reply", (req, res) => {
     to      : keys.gmailinfo.PERSONALEMAIL,
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
-  }).then((info) => {
-    console.log("Message to me sent with Id: " + info.messageId + "sent");
-  }).catch((err) => {
-    console.log(err);
+  }, (err, info) => {
+    if (err) throw err; // big trouble if send to user worked but send to 'me' did not
+    console.log("Message to user sent with Id: " + info.messageId + "sent");
   });
 
   return res.json({ msg: "Your message was sent! " +
