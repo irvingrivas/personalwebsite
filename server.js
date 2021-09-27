@@ -51,6 +51,8 @@ app.post("/reply", (req, res) => {
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
   });
 
+  console.log("I am here");
+
   // Establish SMTP Transport
   let transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -70,6 +72,8 @@ app.post("/reply", (req, res) => {
     console.log(err);
   });
 
+  console.log("I am there");
+
   // Get email content from user message
   let emailContent = fs.readFileSync(path.join(__dirname, 
     "app/views/response.html")) + req.body.message;
@@ -87,6 +91,8 @@ app.post("/reply", (req, res) => {
     return res.json({ msg: "Your message was not sent. " +
       "Please check your email entry on form." });
   });
+
+  console.log("I am thithere");
 
   // Send mail to me
   transport.sendMail({
