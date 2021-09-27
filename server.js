@@ -78,6 +78,7 @@ app.post("/reply", (req, res) => {
     html    : emailContent
   }, (err, info) => {
     if (err) {
+      console.log(err);
       return res.json({ msg: "Your message was not sent. " +
         "Please check your email entry on form." });
     } else {
@@ -92,7 +93,7 @@ app.post("/reply", (req, res) => {
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
   }, (err, info) => {
-    if (err) throw err; // big trouble if send to user worked but send to 'me' did not
+    if (err) console.log(err); // big trouble if send to user worked but send to 'me' did not
     console.log("Message to user sent with Id: " + info.messageId + "sent");
   });
 
