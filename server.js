@@ -93,12 +93,12 @@ app.post("/reply", (req, res) => {
     subject : "New message from " + req.body.email + " @ irvingrivas.com",
     text    : req.body.message
   }, (err, info) => {
-    if (err) console.log(err); // big trouble if send to user worked but send to 'me' did not
+    if (err) throw err; // big trouble if send to user worked but send to 'me' did not
     console.log("Message to user sent with Id: " + info.messageId + "sent");
+    return res.json({ msg: "Your message was sent! " +
+      "Please check your inbox for confirmation." });
   });
 
-  return res.json({ msg: "Your message was sent! " +
-    "Please check your inbox for confirmation." });
 });
 
 app.get("*", (req, res) => {
