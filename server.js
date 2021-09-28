@@ -1,5 +1,6 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
+const axios      = require("axios");
 const express    = require("express");
 const path       = require("path");
 const keys       = require("./keys.js");
@@ -41,9 +42,15 @@ app.post("/reply", (req, res) => {
     "&remoteip=" + req.socket.remoteAddress;
 
   // Hitting request to the Verification URL.
-  fetch(verificationUrl, { method: "POST"
-    }).then((response) => {
-      console.log(JSON.stringify(response.data)); // Needed for fetch
+  axios({
+    method: "post",
+    url: "https://www.google.com/recaptcha/api/siteverify",
+    params: {
+      secret:   keys.gmailinfo.CAPTCHASECRETKEY,
+      response: req.body.captcha,
+      remoteip: req.socket.remoteAddress
+    }}).then((response) => {
+      console.log(response.data);
     }).catch((err) => {
       console.log(err);
       return res.json({ msg: "Your message was not sent. Invalid Captcha." });
