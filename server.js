@@ -36,11 +36,6 @@ app.post("/reply", (req, res) => {
     return res.json({ msg: "Your message was not sent. Please input contact info." })
   }
 
-  // Google api verification URL.
-  let verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + 
-    keys.gmailinfo.CAPTCHASECRETKEY + "&response=" + req.body.captcha + 
-    "&remoteip=" + req.socket.remoteAddress;
-
   // Hitting request to the Verification URL.
   axios({
     method: "post",
