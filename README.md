@@ -21,5 +21,5 @@ Google reCaptcha v2
 Github Dependabot
 ```
 
-The application is 'logically' running in a Heroku Dyno which is 'physically' running on top of an AWS node.
+The application is 'logically' running in a Heroku Dyno which is 'physically' running on an AWS node.
 This Heroku Dyno is secured with an SSL so that contact information sent is secure during transit.
